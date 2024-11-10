@@ -86,22 +86,19 @@ const HomePage: React.FC = () => {
         <div className="container-fluid d-flex p-0" style={{minHeight: '100vh'}}>
 
             <div className="video-left flex-grow-1">
-                <video className="background-video left" style={{...videoStyles, width: isMobile ? '100%' : '45vw',}} autoPlay loop muted>
-                    <source src={video} type="video/mp4"/>
-                    Your browser does not support the video tag.
-                </video>
+
             </div>
 
             <div
                 className="container-fluid p-0 d-flex flex-column align-items-center custom-background square-container-home flex-grow-7"
                 style={{
-                    backgroundColor: '#DDE4EE',
-                    backgroundImage: `url(${backgroundImage})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: isMobile ? '-3px 10px' : '31px 6px',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundAttachment: 'fixed',
-                    minHeight: isMobile ? '100vh' : '100vh',
+                    // backgroundColor: '#DDE4EE',
+                    // backgroundImage: `url(${backgroundImage})`,
+                    // backgroundSize: 'cover',
+                    // backgroundPosition: isMobile ? '-3px 10px' : '31px 6px',
+                    // backgroundRepeat: 'no-repeat',
+                    // backgroundAttachment: 'fixed',
+                    // minHeight: isMobile ? '100vh' : '100vh',
                 }}>
 
                 <div className="d-flex justify-content-between align-items-center w-100">
@@ -165,12 +162,7 @@ const HomePage: React.FC = () => {
                 )}
 
             </div>
-            <div className="video-right flex-grow-1">
-                <video className="background-video right" style={{...videoStyles, right: 0, width: isMobile ? '100%' : '45vw',}} autoPlay loop muted>
-                    <source src={video} type="video/mp4"/>
-                    Your browser does not support the video tag.
-                </video>
-            </div>
+
 
         </div>
     );

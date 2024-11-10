@@ -1,15 +1,40 @@
+/*fonts*/
+@font-face {
+    font-family: 'Karla-Bold';
+    src: url('../../assets/fonts/Karla/static/Karla-Bold.ttf') format('truetype');
+}
+
+
+
+@font-face {
+    font-family: 'Karla-Regular';
+    src: url('../../assets/fonts/Karla/static/Karla-Regular.ttf') format('truetype');
+}
+/*fonts*/
+
+body, html {
+    overflow: hidden; /* Отключаем прокрутку для всей страницы */
+    height: 100%;
+}
+
 .square-container-register {
     position: relative;
     width: 100%;
-    height: auto;
+    height: 100%;
     max-width: 800px;
     max-height: 1900px;
     margin: 0 auto;
-    background-color: white;
     border-radius: 10px;
-    box-shadow: 0 8px 30px rgba(255, 255, 255, 1), /* Основная большая тень */
-    0 5px 15px rgba(255, 255, 255, 1); /* Дополнительная мягкая тень */
     z-index: 1;
+}
+
+.container-fluid-register {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Смещаем карточку к нижней границе */
+    min-height: 100vh;
+    background-position: center bottom;
+    background-attachment: fixed; /* Фиксируем фон */
 }
 
 .full-height-register {
@@ -17,33 +42,135 @@
     /* Додаємо горизонтальне вирівнювання */
 }
 
-.background-video-register {
-    object-fit: cover ;
-    z-index: -1;
-    box-sizing: border-box;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    width: 45vw;
-    left: 0;
+.party-icon-register {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: -2px;
+    left: -198px;
+    z-index: 1000;
 }
 
-.background-video_r-register {
-    object-fit: cover;
-    z-index: -1;
-    box-sizing: border-box;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    width: 45vw;
-    right: 0;
+.card-register {
+    background-image: url('../../assets/signUp_card.svg'); /* путь к изображению */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    max-height: 100vh; /* Ограничиваем высоту карточки, чтобы она не занимала весь экран */
+    width: 100%;
+    max-width: 600px;
+    overflow-y: auto; /* Включаем прокрутку только внутри карточки */
+    border-radius: 10px; /* Закругленные края карточки */
+    transform: translate(-100px, 40px); /* Сдвигаем карточку вверх и влево */
 }
 
+.card-register .react-datepicker__triangle {
+    display: none;
+}
 
-@media (max-width: 768px) {
-    .background-video-register, .background-video_r-register {
-        position: static;
-        width: 100%;
-        height: 0;
-    }
+/*card body*/
+h1.card-title-register {
+    font-family: 'Karla-Bold', sans-serif;
+    font-size: 40px;
+    color: #263238; /* Apply the color */
+    margin-bottom: 16px; /* Keep the margin for spacing */
+    text-align: center; /* Keep the text centered */
+    white-space: nowrap;
+}
+
+.input_titles-register {
+    font-family: 'Karla-Bold', sans-serif; /* Use the Halant-Bold font */
+    font-size: 16px;
+    color: #263238; /* Apply the color */
+    margin-bottom: 4px; /* Keep the margin for spacing */
+    text-align: center; /* Keep the text centered */
+    white-space: nowrap;
+}
+
+.custom-input-register {
+    border-radius: 20px !important; /* Закругленные края */
+    border: 1px solid #90A4AE; /* Внутренняя обводка */
+    padding: 10px 15px; /* Отступы внутри поля для комфорта */
+    font-size: 16px; /* Размер текста */
+    box-sizing: border-box; /* Включаем внутренние отступы в расчет ширины */
+    width: 500px;
+}
+.custom-input-register:focus {
+    border-color: #90A4AE; /* Оставляем обводку при фокусе */
+    outline: none; /* Убираем стандартное выделение при фокусе */
+}
+
+.custom-input-register::placeholder {
+    color: #90A4AE; /* Цвет текста placeholder */
+    font-family: 'Karla-Regular', sans-serif; /* Устанавливаем шрифт для placeholder */
+}
+
+.is-invalid-register {
+    border-color: #ff6c6c; /* Красная обводка, если есть ошибка */
+}
+
+.invalid-feedback-register {
+    color: #ff6c6c;
+    font-size: 14px;
+}
+/*card body*/
+
+.text-alrdy-register {
+    font-family: 'Karla-Bold', sans-serif; /* Устанавливаем шрифт Karla-Bold */
+    color: #263238; /* Цвет текста для "Don't have an account yet?" */
+}
+
+.text-signin-register {
+    font-family: 'Karla-Bold', sans-serif; /* Устанавливаем шрифт Karla-Bold */
+    color: white; /* Цвет текста белый */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.confirm-button-register {
+    background-color: black; /* Черный цвет фона */
+    border: 1px solid #50C5FF; /* Обводка 1 пиксель цвета 50C5FF */
+    border-radius: 20px; /* Закругленные углы */
+    width: 470px; /* Уменьшенная ширина */
+    padding: 10px; /* Отступы внутри кнопки для удобства */
+    color: white; /* Цвет текста белый */
+    font-family: 'Karla-Bold', sans-serif; /* Устанавливаем шрифт Karla-Bold */
+    font-size: 20px; /* Размер текста */
+    transition: background-color 0.3s ease; /* Плавный переход для цвета фона */
+    display: block; /* Делаем кнопку блочным элементом */
+    margin: 0 auto; /* Центрируем кнопку */
+}
+
+.confirm-button-register:hover {
+    background-color: #333; /* Изменение цвета при наведении, например, темно-серый */
+}
+
+/*datepicker*/
+
+
+.calendar-icon-register {
+    width: 25px; /* Установите нужный размер */
+    height: auto; /* Сохраняем пропорции */
+    position: absolute;
+    right: 20px; /* Расположение иконки внутри поля */
+    top: 50%; /* Центрируем по вертикали */
+    transform: translateY(-50%); /* Центрируем по вертикали */
+    cursor: pointer; /* Указываем, что иконка кликабельна */
+}
+/*datepicker*/
+
+
+/* Стили для опций в select */
+.gender-select-option-register {
+    color: #90A4AE; /* Цвет текста по умолчанию для опций */
+    font-family: 'Karla-Regular', sans-serif; /* Шрифт для всех опций */
+}
+
+.gender-select-option-register-bold {
+    color: #263238; /* Цвет для опции "Select Gender" */
+    font-family: 'Karla-Bold', sans-serif; /* Жирный шрифт для опции "Select Gender" */
+}
+
+/* Настройка hover для опций, если необходимо */
+.gender-select-option-register:hover {
+    color: #263238; /* Цвет текста при наведении */
 }

@@ -1,14 +1,21 @@
 
-
 .full-height-welcome {
-    min-height: 100vh;
+    min-height: 110vh;
     /* Додаємо горизонтальне вирівнювання */
+}
+
+.container-fluid-welcome {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Сместить к нижней границе экрана */
+    min-height: 100vh; /* Покрыть 100% высоты экрана */
+    background-position: center bottom; /* Фон начинается с нижней границы */
 }
 
 .square-container-welcome {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 80%;
     max-width: 1000px;
     /*max-height: 1;*/
     margin: 0 auto;
@@ -35,89 +42,57 @@
 /*    font-family: 'Halant-Bold', sans-serif;*/
 /*}*/
 
-
-.welcome {
-    font-family: 'Halant-SemiBold', sans-serif;
-    font-size: 24px;
-    width: 80%;
-}
-
-
-/* Стиль для прямокутника */
-.rectangle {
-    background: linear-gradient(180deg, #827E7D 9%, #2B2B2B 31%);
-    border: 4px solid transparent;
-    border-image: linear-gradient(180deg, #2C2E2E 0%, #161616 100%) 1;
-    margin-bottom: 20px;
-    box-sizing: border-box;
-    box-shadow: 0 0 0 2px grey;
-    font-family: "VT323", monospace;
-    font-size: 20px;
-    font-weight: normal;
-    line-height: 1;
-    overflow: hidden;
-    position: relative;
-}
-
-.rectangle-mobile {
-    width: 300px;
-    height: 50px;
-}
-
-.rectangle-desktop {
-    width: 440px;
-    height: 50px;
-}
-
-.scrolling-text-welcome {
+.party-icon-welcome {
+    width: 80px;
+    height: 80px;
     position: absolute;
-    white-space: nowrap; /* Запобігаємо переносу тексту */
-    left: 0; /* Починаємо з лівого краю */
-    font-weight: bold; /* Жирний текст */
-    color: #FFFFFF;
-    text-shadow: 2px 2px 4px rgba(128, 128, 128, 0.7); /* Сірий тіньовий ефект */
-    animation: scrollText-welcome 5s linear infinite, blink-welcome 1s infinite; /* Анімації */
+    top: -212px;
+    left: 2px;
+    z-index: 1000;
 }
 
-/* Keyframes for scrolling text */
-@keyframes scrollText-welcome {
-    0% {
-        transform: translateX(-100%); /* Start off-screen from the left */
-    }
-    100% {
-        transform: translateX(245%); /* End off-screen to the right */
-    }
+.welcome-to-party {
+    font-family: 'Halant-SemiBold', sans-serif;
+    font-size: 20px;
+    width: 80%;
+    color: #000000;
 }
 
-
-
-@keyframes blink-welcome {
-    0%, 100% {
-        opacity: 1; /* Fully visible */
-    }
-    50% {
-        opacity: 0; /* Fully invisible */
-    }
+.home-text-welcome {
+    font-family: 'Halant', sans-serif; /* Fallback to sans-serif */
+    font-size: 27px; /* Set font size to 27 pixels */
+    margin-left: 13px; /* Set left margin for spacing */
+    position: absolute;
+    top: -195px;
+    left: 904px;
+    color: black; /* Text color */
 }
 
-.scrolling-line-welcome {
-    position: relative;
-    margin-top: 20px;
-    font-weight: bold;
-    color: #94B7EF;
-    width: 400%; /* Ширина лінії набагато більша за контейнер */
-    text-shadow: 2px 2px 4px rgba(128, 128, 128, 0.7); /* Сірий тіньовий ефект */
-    /* Додаємо анімацію, якщо це потрібно */
-    /* animation: scrollText 10s linear infinite; */
+.home-link-welcome {
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Vertically center the items */
+    padding: 2px; /* Add padding for spacing */
+    margin-bottom: -20px; /* Move the link upwards */
+}
+
+.home-icon-welcome {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: -200px;
+    left: 870px;
+
 }
 
 .text-center-welcome {
     font-family: 'Halant', serif;
-    font-size: 21px !important; /* За замовчуванням */
+    font-size: 20px !important; /* За замовчуванням */
+
 }
 
 @media (min-width: 768px) {
     .text-center-welcome {
-        font-size: 48px !important; /* Для комп'ютерів */
+        font-size: 40px !important; /* Для комп'ютерів */
+        color: #000000;
     }
 }

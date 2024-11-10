@@ -6,12 +6,15 @@ import { useAuth } from '../../Context/useAuth';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import { Address } from '../../Models/User';
-import { DatePicker } from 'rsuite';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import 'rsuite/dist/rsuite.min.css';
-import backgroundImage from '../../assets/backcov1.svg';
+import backgroundImage from '../../assets/backgroundFinal.svg';
 import Disco from '../../assets/disco.svg';
-import video from '../../assets/viddd2.mp4';
 import './RegisterPage.css';
+import './datepicker.css';
+import icon_calendar from '../../assets/icon _calendar_.svg';
+
 export type RegisterFormInputs = {
     email: string;
     userName: string;
@@ -46,6 +49,22 @@ const validationSchema = Yup.object().shape({
     bio: Yup.string().optional(),
 });
 
+const CustomInput = React.forwardRef(({ value, onClick, placeholder }, ref) => (
+    <div>
+        <input
+            className="custom-input-register form-control"
+            onClick={onClick}
+            ref={ref}
+            value={value}
+            placeholder={placeholder}
+            readOnly
+        />
+        <div className="input-group-append" onClick={onClick}>
+            <img src={icon_calendar} alt="Calendar Icon" className="calendar-icon-register" />
+        </div>
+    </div>
+));
+
 const RegisterPage: React.FC = () => {
     const { registerUser } = useAuth();
     const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<RegisterFormInputs>({
@@ -76,75 +95,57 @@ const RegisterPage: React.FC = () => {
 
     const renderInput = (label: string, id: string, type: string, placeholder: string, registerName: keyof RegisterFormInputs, error?: string) => (
         <div className="mb-3">
-            <label htmlFor={id} className="form-label">{label}</label>
+            <label htmlFor={id} className="input_titles-register">{label}</label>
             <input
                 type={type}
                 id={id}
                 autoComplete={id}
-                className={`form-control ${error ? 'is-invalid' : ''}`}
+                className={`custom-input-register form-control ${error ? 'is-invalid-register' : ''}`}
                 placeholder={placeholder}
                 {...register(registerName)}
             />
-            {error && <div className="invalid-feedback">{error}</div>}
+            {error && <div className="invalid-feedback-register">{error}</div>}
         </div>
     );
 
     const renderAddressInput = (label: string, id: string, placeholder: string, registerName: keyof Address, error?: string) => (
         <div className="mb-3">
-            <label htmlFor={id} className="form-label">{label}</label>
+            <label htmlFor={id} className="input_titles-register">{label}</label>
             <input
                 type="text"
                 id={id}
                 autoComplete={id}
-                className={`form-control ${error ? 'is-invalid' : ''}`}
+                className={`custom-input-register form-control ${error ? 'is-invalid-register' : ''}`}
                 placeholder={placeholder}
                 {...register(`address.${registerName}` as const)}
             />
-            {error && <div className="invalid-feedback">{error}</div>}
+            {error && <div className="invalid-feedback-register">{error}</div>}
         </div>
     );
 
-    const isMobile = window.innerWidth <= 768;
+    //const isMobile = window.innerWidth <= 768;
 
 
     return (
-        <div className="container-fluid d-flex p-0 full-height-register">
-            <div className="video-left flex-grow-1">
-                <video className="background-video-register left" autoPlay loop muted>
-                    <source src={video} type="video/mp4"/>
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <div
-                className="container-fluid p-0 d-flex flex-column align-items-center custom-background square-container-register flex-grow-7"
-                style={{
-                    backgroundColor: '#DDE4EE',
-                    backgroundImage: `url(${backgroundImage})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: isMobile ? '1px 10px' : '15px 10px',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundAttachment: 'fixed',
-                    minHeight: '100vh',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                }}
-            >
-                <div style={{position: 'absolute', top: '-1.5px', left: '5px', zIndex: 100}}>
+        <div className="container-fluid-register d-flex p-0 full-height-register"
+             style={{
+                 backgroundImage: `url(${backgroundImage})`,
+                 backgroundSize: 'cover',
+                 backgroundAttachment: 'fixed' // Фиксируем фон
+             }}>
+            <div className="video-left flex-grow-1"></div>
+
+            <div className="container-fluid p-0 d-flex flex-column align-items-center custom-background square-container-register flex-grow-7">
+                <div>
                     <img
                         src={Disco}
                         alt="Disco Icon"
-                        width="80"
-                        height="80"
-                        //style={{position: 'absolute', top: '-66.5px', right: '1105px'}}
+                        className="party-icon-register"
                     />
                 </div>
-                <div className="card w-100 max-w-md m-3"
-                     style={{maxWidth: '1000px',minHeight: '100vh', backgroundColor: 'rgba(255, 255, 255, 0.5)'}}>
-                    <div className="card-body p-5"
-                         style={{marginTop: '10px'}}>
-
-                        <h1 className="card-title mb-4 text-center">Create your account</h1>
+                <div className="card-register">
+                    <div className="card-body p-5" style={{marginTop: '10px'}}>
+                        <h1 className="card-title-register mb-4 text-center">Create your account</h1>
                         <form onSubmit={handleSubmit(handleRegister)}>
                             {renderInput('Email', 'email', 'email', 'Email', 'email', errors.email?.message)}
                             {renderInput('Username', 'userName', 'text', 'Username', 'userName', errors.userName?.message)}
@@ -152,60 +153,58 @@ const RegisterPage: React.FC = () => {
                             {renderInput('First Name', 'firstName', 'text', 'First Name', 'firstName', errors.firstName?.message)}
                             {renderInput('Last Name', 'lastName', 'text', 'Last Name', 'lastName', errors.lastName?.message)}
                             {renderInput('Phone', 'phone', 'text', 'Phone', 'phoneNumber', errors.phoneNumber?.message)}
+
                             <div className="mb-3">
-                                <label htmlFor="gender" className="form-label">Gender</label>
+                                <label htmlFor="gender" className="input_titles-register">Gender</label>
                                 <select
                                     id="gender"
                                     autoComplete="gender"
-                                    className={`form-control ${errors.gender ? 'is-invalid' : ''}`}
+                                    className={`custom-input-register form-control ${errors.gender ? 'is-invalid-register' : ''}`}
                                     {...register("gender", {
                                         required: "Gender is required",
-                                        valueAsNumber: true // Ensure the value is parsed as a number
+                                        valueAsNumber: true
                                     })}
                                 >
-                                    <option value="">Select Gender</option>
-                                    <option value={0}>Male</option>
-                                    <option value={1}>Female</option>
-                                    <option value={2}>Other</option>
+                                    <option value="" className="gender-select-option-register">Select Gender</option>
+                                    <option value={0} className="gender-select-option-register-bold">Male</option>
+                                    <option value={1} className="gender-select-option-register-bold">Female</option>
+                                    <option value={2} className="gender-select-option-register-bold">Other</option>
                                 </select>
                                 {errors.gender && (
-                                    <div className="invalid-feedback">{errors.gender.message}</div>
+                                    <div className="invalid-feedback-register">{errors.gender.message}</div>
                                 )}
                             </div>
 
                             <div className="mb-3">
-                                <label htmlFor="dateOfBirth" className="form-label">Date of Birth</label>
+                                <label htmlFor="dateOfBirth" className="input_titles-register">Date of Birth</label>
                                 <DatePicker
-                                    format="yyyy-MM-dd"
-                                    value={dateOfBirthValue}
+                                    selected={dateOfBirthValue}
                                     onChange={(date) => setValue('dateOfBirth', date ? date.toISOString().split('T')[0] : undefined)}
-                                    placeholder="Select Date"
-                                    style={{width: '100%'}}
+                                    dateFormat="yyyy-MM-dd"
+                                    placeholderText="Select Date"
+                                    customInput={<CustomInput/>}
+                                    className="react-datepicker"
                                 />
-                                {errors.dateOfBirth &&
-                                    <div className="invalid-feedback">{errors.dateOfBirth.message}</div>}
+                                {errors.dateOfBirth && (
+                                    <div className="invalid-feedback-register">{errors.dateOfBirth.message}</div>
+                                )}
                             </div>
+
 
                             {renderAddressInput('Street Address', 'addressStreetAddress', 'Street Address', 'streetAddress', errors.address?.streetAddress?.message)}
                             {renderAddressInput('City', 'addressCity', 'City', 'city', errors.address?.city?.message)}
                             {renderAddressInput('Postal Code', 'addressPostalCode', 'Postal Code', 'postalCode', errors.address?.postalCode?.message)}
                             {renderAddressInput('Country', 'addressCountry', 'Country', 'country', errors.address?.country?.message)}
 
-                        {renderInput('Bio', 'bio', 'text', 'Bio', 'bio', errors.bio?.message)}
+                            {renderInput('Bio', 'bio', 'text', 'Bio', 'bio', errors.bio?.message)}
 
-                            <button type="submit" className="btn btn-primary w-100">Sign up</button>
-                            <p className="text-center mt-3">
-                                Already have an account? <Link to="/">Sign in</Link>
+                            <button type="submit" className="confirm-button-register">Sign up</button>
+                            <p className="text-center mt-3 text-alrdy-register">
+                                Already have an account? <Link to="/" className="text-signin-register">Sign in</Link>
                             </p>
                         </form>
                     </div>
                 </div>
-            </div>
-            <div className="video-right flex-grow-1">
-                <video className="background-video_r-register right" autoPlay loop muted>
-                    <source src={video} type="video/mp4"/>
-                    Your browser does not support the video tag.
-                </video>
             </div>
         </div>
     );

@@ -1,0 +1,78 @@
+
+@font-face {
+    font-family: 'Lato-Medium';
+    src: url('../../assets/fonts/Lato/Lato-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lato-Bold';
+    src: url('../../assets/fonts/Lato/Lato-Bold.ttf') format('truetype');
+}
+
+
+.react-datepicker {
+    position: relative; /* Позволяет использовать абсолютное позиционирование для псевдоэлемента */
+    background-color: white; /* Цвет фона */
+    border-radius: 12px; /* Закругленные углы для внутренней области */
+    border: none;
+
+}
+
+/* Псевдоэлемент для создания градиентной обводки */
+.react-datepicker::before {
+    content: ''; /* Необходимо для псевдоэлемента */
+    position: absolute; /* Абсолютное позиционирование */
+    top: -4px; /* Сдвиньте на толщину обводки */
+    left: -4px; /* Сдвиньте влево на толщину обводки */
+    right: -4px; /* Сдвиньте вправо на толщину обводки */
+    bottom: -4px; /* Сдвиньте вниз на толщину обводки */
+    background: linear-gradient(130deg, rgb(87, 87, 236), rgb(255, 255, 255)); /* Градиентный цвет */
+    border-radius: 12px; /* Закругленные углы для обводки */
+    z-index: -1; /* Псевдоэлемент будет позади основного содержимого */
+}
+
+/* Заголовок (месяц и год) */
+.react-datepicker__header {
+    border-radius: 12px 12px 0 0; /* Закругленные углы для внутренней области */
+    background-color: white;
+    border-bottom: 1px solid #828282; /* Черта между заголовком и днями недели */
+}
+
+.react-datepicker__current-month {
+    font-family: 'Lato-Bold', sans-serif; /* Шрифт Lato-Bold */
+    color: #828282; /* Цвет заголовка */
+    font-size: 16px;
+    margin-bottom: 8px;
+    text-align: center; /* Выравнивание по центру */
+}
+
+/* Дни недели */
+.react-datepicker__day-names {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* Равномерное распределение дней недели */
+}
+
+.react-datepicker__day-name {
+    font-family: 'Lato-Medium', sans-serif; /* Шрифт для дней недели */
+    color: #000000; /* Черный цвет текста */
+}
+
+/* Числа в календаре */
+.react-datepicker__day {
+    font-family: 'Lato-Medium', sans-serif; /* Шрифт для чисел */
+    color: #000000; /* Черный цвет текста */
+}
+
+/* Стрелки навигации (предыдущий и следующий месяц) */
+.react-datepicker__navigation--previous,
+.react-datepicker__navigation--next {
+    border-color: black; /* Черные стрелки */
+}
+
+/* Выбранный или наведенный день */
+.react-datepicker__day:hover,
+.react-datepicker__day--selected {
+    background-color: #1294F2; /* Синий фон при выборе или наведении */
+    border-radius: 50%; /* Круглая форма */
+    color: white; /* Белый текст */
+}
