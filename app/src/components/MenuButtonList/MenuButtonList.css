@@ -1,1 +1,22 @@
 ﻿
+    @font-face {
+        font-family: 'Halant';
+        src: url('../../assets/fonts/halant/Halant-SemiBold.ttf') format('truetype');
+    }
+
+    .custom-font {
+        font-family: 'Halant', serif;
+    }
+
+    .menu-button-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+        padding: 20px 0;
+    }
+
+    .menu-button-wrapper {
+        flex: 0 1 auto;
+        text-align: center;
+    }

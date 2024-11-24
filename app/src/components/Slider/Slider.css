@@ -1,11 +1,12 @@
 ﻿.slider-container {
+    margin-top: 10px;
     display: flex;
     align-items: center;
-    background: linear-gradient(90deg, #D5D5D5 88%, #737373 100%);
-    border-radius: 25px;
-    padding: 7px;
+    background: white;
+    border-radius: 16px;
+    padding: 8px;
     /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
-    width: 100%;
+    width: 90%;
 }
 
 

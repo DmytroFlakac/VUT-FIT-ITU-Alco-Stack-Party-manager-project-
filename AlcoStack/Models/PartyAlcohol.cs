@@ -10,7 +10,9 @@ public class PartyAlcohol
     
     public Alcohol Alcohol { get; set; }
     
-    public int Volume { get; set; } = 0;
+    public double Volume { get; set; } = 0.0;
     
     public int Rank { get; set; } = 0;
+    
+    public bool? WillBeBought { get; set; } = false;
 }

@@ -11,8 +11,9 @@ public class PartyDto
     
     public string? Photo { get; set; }
     
-    public DateTime Date { get; set; }
+    public DateTime date { get; set; }
     
+    public DateTime preparationDate { get; set; }
     public string? Location { get; set; }
     
     public bool Liquors { get; set; } = false;
@@ -25,12 +26,10 @@ public class PartyDto
     
     public int RankLimit { get; set; } = 0;
     
-    // public int[]? VolumeList { get; set; }
+    
     
     public bool CreatedByMe { get; set; }
     
-    // public ICollection<User> Users { get; set; } = new List<User>();
-    //
-    // public ICollection<Alcohol> Alcohols { get; set; } = new List<Alcohol>();
+    
     
 }

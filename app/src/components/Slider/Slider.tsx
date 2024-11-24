@@ -7,11 +7,10 @@ interface SliderProps {
     value: number;
     onChange: (value: number) => void;
     imageSrc: string; // Add a new prop for the image source
-    // toggle: boolean;
-    // onToggleChange: () => void;
+
 }
 
-const Slider: React.FC<SliderProps> = ({ label, value, onChange, imageSrc /* toggle, onToggleChange */ }) => {
+const Slider: React.FC<SliderProps> = ({ label, value, onChange, imageSrc }) => {
     const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         onChange(parseInt(e.target.value, 10));
     };
@@ -30,9 +29,7 @@ const Slider: React.FC<SliderProps> = ({ label, value, onChange, imageSrc /* tog
                 value={value}
                 onChange={handleSliderChange}
             />
-            {/*<button className={`slider-toggle ${toggle ? 'on' : 'off'}`} onClick={onToggleChange}>*/}
-            {/*    <div className="toggle-circle"></div>*/}
-            {/*</button>*/}
+
             <span className="slider-value">{value}</span> {/* Display current value */}
         </div>
     );

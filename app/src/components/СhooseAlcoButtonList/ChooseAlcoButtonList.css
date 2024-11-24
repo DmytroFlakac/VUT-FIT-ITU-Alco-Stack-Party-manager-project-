@@ -1,23 +1,37 @@
 ﻿.alco-container {
     margin-top: 10px;
-    width: 100%; /* Займає всю ширину екрану */
+    width: 80%;
 }
 
 .alco-row {
-    width: 100%; /* Рядок також має займати всю ширину */
+    width: 100%;
 }
 
 .choose-alco-button {
     margin-top: 1px;
-    width: 80%; /* Кнопка займає всю ширину батьківського контейнера */
-    max-width: none; /* Відміна обмеження на максимальну ширину */
+    height: 90px;
+    width: 160px;
+    background-image: url("/app/src/assets/alcobuttonpopupBack.svg");
+
+    max-width: none;
     text-align: center;
-    padding: 10px; /* Збільшення відступів для кращого вигляду */
-    font-size: 20px; /* Збільшення розміру тексту */
+
+    font-size: 20px;
+}
+.alco-button-list {
+    display: flex;
+
+    justify-content: center;
+    gap: 40px;
+
 }
 
+.alco-button-wrapper {
+    flex: 0 1 auto;
+    text-align: center;
+}
 .choose-alco-button img {
-    margin-right: 10px; /* Відступ між іконкою і текстом */
+    margin-right: 0px;
 }
 
 .choose-alco-button-text {

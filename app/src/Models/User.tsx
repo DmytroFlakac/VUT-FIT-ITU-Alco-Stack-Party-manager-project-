@@ -1,4 +1,5 @@
-﻿export type Address = {
+﻿
+export type Address = {
     streetAddress?: string;
     city?: string;
     postalCode?: string;
@@ -47,3 +48,5 @@ export type UserPhoto = {
     photoFile?: File | null;
     formBackgroundFile?: File | null;
 };
+
+

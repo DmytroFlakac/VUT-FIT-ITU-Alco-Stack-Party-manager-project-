@@ -11,5 +11,4 @@ public class UpdateUserPhotoDto
     
     public bool FormBackgroundChanged { get; set; }
     public IFormFile? PhotoFile { get; set; }
-    public IFormFile? FormBackgroundFile { get; set; }
 }

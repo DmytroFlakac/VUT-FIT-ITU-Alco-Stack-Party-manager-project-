@@ -22,5 +22,9 @@ public interface IPartyAlcoholRepository
     Task<ICollection<PartyAlcohol>> DeleteMidAlcoholsAsync(Guid partyId);
     Task<ICollection<PartyAlcohol>> DeleteHighAlcoholsAsync(Guid partyId);
 
+    Task<PartyUserAlcoholPurchaseDto>
+        UpdateAlcoholPurchasesAsync(Guid partyId, PartyUserAlcoholPurchaseDto purchaseDto);
     Task<ICollection<PartyAlcohol>> GetAllAsync();
+    Task<PartyUserAlcoholDto> GetPartyUserAlcoholsWithVolumeAsync(Guid partyId);
+    Task<bool> AnyAsync(Guid partyId);
 }

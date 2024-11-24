@@ -1,0 +1,32 @@
+.player-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 2px;
+    margin-top: -30px;
+    border: 4px solid #333;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.player-container.mobile {
+    width: 300px;
+    height: 180px;
+}
+
+.player-container.desktop {
+    width: 500px;
+    height: 300px;
+}
+
+.video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 0 0 2px #2C2E2E, 0 0 0 4px #161616;
+}

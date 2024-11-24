@@ -1,31 +1,10 @@
-﻿.container .menu-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    width:100%;
-    height: 100%;
-    transition: transform 0.3s ease-in-out;
+﻿
+@font-face {
+    font-family: 'HalantB';
+    src: url('../../assets/fonts/halant/Halant-Bold.ttf') format('truetype');
 }
 
-/* Desktop and tablet styling */
-@media (min-width: 768px) {
-    .menu-button {
-        opacity: 0.9;
-    }
-
-    .menu-button:hover {
-        opacity: 1;
-        transform: scale(1.03);
-    }
-}
-
-/* Mobile styling */
-@media (max-width: 767px) {
-    .menu-button {
-        /* Remove opacity on mobile devices */
-        opacity: 1;
-    }
+.choose-alco-button-text {
+    font-family: 'HalantB', serif;
+    color: #484545;
 }

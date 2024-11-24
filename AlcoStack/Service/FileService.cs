@@ -11,8 +11,7 @@ namespace AlcoStack.Service;
             try
             {
                 var contentPath = env.ContentRootPath;
-                // path = "c://projects/productminiapi/uploads" ,not exactly something like that
-                var path = Path.Combine(contentPath, "Uploads");
+                var path = Path.Combine(contentPath, "wwwroot/images");
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
@@ -44,7 +43,7 @@ namespace AlcoStack.Service;
         public async Task DeleteImage(string imageFileName)
         {
             var contentPath = env.ContentRootPath;
-            var path = Path.Combine(contentPath, $"Uploads", imageFileName);
+            var path = Path.Combine(contentPath, $"wwwroot/images", imageFileName);
             if (File.Exists(path))
                 File.Delete(path);
         }

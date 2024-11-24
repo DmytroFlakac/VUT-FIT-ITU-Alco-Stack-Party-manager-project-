@@ -5,7 +5,7 @@ namespace AlcoStack.Mappers;
 
 public static class AlcoholMapper
 {
-    public static AlcoholDto MapToDto(this Alcohol alcohol) => new AlcoholDto
+    public static AlcoholDto  MapToDto(this Alcohol alcohol) => new AlcoholDto
     {
         Name = alcohol.Name, 
         Type = alcohol.Type,

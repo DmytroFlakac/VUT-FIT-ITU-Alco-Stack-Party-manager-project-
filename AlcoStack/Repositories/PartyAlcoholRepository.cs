@@ -94,6 +94,7 @@ public class PartyAlcoholRepository(AppDataContext context) : IPartyAlcoholRepos
     {
         var partyAlcohol = await context.PartyAlcohols
             .FirstOrDefaultAsync(x => x.PartyId == partyId && x.AlcoholId == alcoholId);
+     //   var ratedAlcohols = await GetByRankAsync(partyId);
         
         if (partyAlcohol == null)
         {
@@ -327,4 +328,78 @@ public class PartyAlcoholRepository(AppDataContext context) : IPartyAlcoholRepos
         
         return partyAlcohols;
     }
+    
+    public async Task<PartyUserAlcoholPurchaseDto> UpdateAlcoholPurchasesAsync(Guid partyId, PartyUserAlcoholPurchaseDto purchaseDto)
+    {
+        // Include the Alcohol navigation property to ensure it's loaded
+        var partyAlcohols = await context.PartyAlcohols
+            .Where(pa => pa.PartyId == partyId)
+            .Include(pa => pa.Alcohol) // Ensure Alcohol is loaded
+            .ToListAsync();
+
+        // Iterate through the purchases in the DTO
+        foreach (var purchase in purchaseDto.AlcoholPurchases)
+        {
+            // Find the corresponding PartyAlcohol
+            var partyAlcohol = partyAlcohols.FirstOrDefault(pa => pa.Alcohol?.Name == purchase.Name);
+            if (partyAlcohol != null)
+            {
+                // Update the WillBeBought value
+                partyAlcohol.WillBeBought = purchase.WillBeBought;
+            }
+        }
+
+        // Save changes to the database
+        await context.SaveChangesAsync();
+
+        // Prepare the updated data to return
+        var updatedPurchases = await context.PartyAlcohols
+            .Where(pa => pa.PartyId == partyId)
+            .Include(pa => pa.Alcohol) // Ensure Alcohol is loaded for the return DTO
+            .Select(pa => new AlcoholPurchaseDto
+            {
+                Name = pa.Alcohol.Name, // Safeguard against null Alcohol
+                WillBeBought = pa.WillBeBought ?? false // Handle nullable WillBeBought
+            })
+            .ToListAsync();
+
+        return new PartyUserAlcoholPurchaseDto
+        {
+            AlcoholPurchases = updatedPurchases
+        };
+    }
+    
+    public async Task<PartyUserAlcoholDto> GetPartyUserAlcoholsWithVolumeAsync(Guid partyId)
+    {
+        // Fetch PartyAlcohol entries for the given partyId where volume > 0
+        var partyAlcohols = await context.PartyAlcohols
+            .Where(pa => pa.PartyId == partyId && pa.Volume > 0)
+            .Include(pa => pa.Alcohol) // Include Alcohol details
+            .ToListAsync();
+
+        if (!partyAlcohols.Any())
+        {
+            throw new Exception($"No alcohols with non-zero volume found for Party ID '{partyId}'.");
+        }
+
+        // Map the PartyAlcohol entries to a PartyUserAlcoholDto
+        var result = new PartyUserAlcoholDto
+        {
+            AlcoholVolume = partyAlcohols.Select(pa => new AlcoholVolumeDto
+            {
+                Name = pa.Alcohol.Name,
+                Volume = pa.Volume
+            }).ToList()
+        };
+
+        return result;
+    }
+    
+    public async Task<bool> AnyAsync(Guid partyId)
+    {
+        return await context.PartyAlcohols.AnyAsync(pa => pa.PartyId == partyId);
+    }
+
+
+
 }

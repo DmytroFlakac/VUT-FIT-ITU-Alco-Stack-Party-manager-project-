@@ -1,20 +1,26 @@
 ﻿import axios from "axios";
-import { handleError } from "../Helpers/ErrorHandler.tsx";
+
 import { UserProfileToken } from "../Models/User.tsx";
 import { Address } from "../Models/User.tsx";
 
-const api = "http://localhost:5131/api/";
+const api = "https://alcostack.azurewebsites.net/api/";
 
 
 export const loginAPI = async (username: string, password: string) => {
     try {
+
         const data = await axios.post<UserProfileToken>(api + "account/login", {
             username: username,
             password: password,
         });
         return data;
     } catch (error) {
-        handleError(error);
+        if (axios.isAxiosError(error)) {
+            window.alert("Username or password are incorrect!");
+        } else {
+            // Handle non-Axios errors
+            window.alert("Unexpected error");
+        }
     }
 };
 
@@ -45,8 +51,14 @@ export const registerAPI = async (
             gender: gender,
             dateOfBirth: dateOfBirth
         });
+
         return data;
     } catch (error) {
-        handleError(error);
+        if (axios.isAxiosError(error)) {
+            window.alert("Username or email are already in use!");
+        } else {
+            // Handle non-Axios errors
+            window.alert("Unexpected error");
+        }
     }
 };

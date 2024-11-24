@@ -3,6 +3,7 @@ using AlcoStack.Extensions;
 using AlcoStack.Interface;
 using AlcoStack.Models;
 using AlcoStack.Mappers;
+using AlcoStack.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +18,8 @@ public class PartyController(
     IPartyAlcoholRepository partyAlcoholRepository,
     IUserPartyRepository userPartyRepository,
     IAlcoholRepository alcoholRepository,
+    IPartyUserAlcoholRepository partyUserAlcoholRepository,
+    IPartyAlcoholVolumeService PartyAlcoholVolumeService,  
     UserManager<User> userManager,
     SignInManager<User> signinManager)
     : ControllerBase
@@ -133,10 +136,15 @@ public class PartyController(
     public async Task<IActionResult> AddUserToParty(Guid partyId)
     {
         if (!ModelState.IsValid)
-            return BadRequest(ModelState);
+            return BadRequest(new { message = "Invalid Party ID format." });
         
         var userName = User.GetUsername();
-        
+        var party = await repository.GetByIdAsync(partyId);
+        if (party == null || party.date < DateTime.UtcNow)
+        {
+           
+            return NotFound(new { message = "Party is not found." });
+        }
         return Ok(await userPartyRepository.AddAsync(userName, partyId));
     }
     
@@ -164,14 +172,7 @@ public class PartyController(
         return Ok(await partyAlcoholRepository.GetAlcoholsByPartyIdAsync(partyId));
     }
     
-    // [HttpGet("{userName}/userParties")]
-    // public async Task<IActionResult> GetPartiesByUserName(string userName)
-    // {
-    //     if (!ModelState.IsValid)
-    //         return BadRequest(ModelState);
-    //     
-    //     return Ok(await userPartyRepository.GetByUserNameAsync(userName));
-    // }
+    
     
     [Authorize]
     [HttpGet("userParties")]
@@ -243,15 +244,40 @@ public class PartyController(
     }
     
     [Authorize]
-    [HttpPatch("{partyId}/update-volume/{alcoholId}")]
-    public async Task<IActionResult> UpdateVolume(Guid partyId, Guid alcoholId, [FromBody] int volume)
+    [HttpPatch("{partyId}/update-volume")]
+    public async Task<IActionResult> UpdateVolume(Guid partyId,  PartyUserAlcoholDto Volumes)
     {
+        var UserName = User.GetUsername();
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
         
-        return Ok(await partyAlcoholRepository.UpdateVolumeAsync(partyId, alcoholId, volume));
+        return Ok(await partyUserAlcoholRepository.UpdateAmountAsync(UserName, partyId, Volumes));
     }
     
+    [HttpGet("{partyId}/alcohol-volumes")]
+    public async Task<IActionResult> GetPartyAlcoholVolumes(Guid partyId, [FromQuery] bool isClicked)
+    {
+
+        var party =  await repository.GetByIdAsync(partyId);
+
+        if (party == null)
+        {
+            return NotFound();
+        }
+        
+        if (!party.IsVolumeEvaluated)
+        {
+            var result = await PartyAlcoholVolumeService.CalculateAndSavePartyAlcoholVolumesAsync(partyId);
+            return Ok(result);
+        }
+        else
+        {
+            var result = await partyAlcoholRepository.GetPartyUserAlcoholsWithVolumeAsync(partyId);
+            return Ok(result);
+        }        
+            
+    }
+   
     [Authorize]
     [HttpPatch("{partyId}/update-rank/{alcoholId}")]
     public async Task<IActionResult> UpdateRank(Guid partyId, Guid alcoholId, [FromBody] int rank)
@@ -261,4 +287,14 @@ public class PartyController(
         
         return Ok(await partyAlcoholRepository.UpdateRankAsync(partyId, alcoholId, rank));
     }
+    [Authorize]
+    [HttpPatch("{partyId}/update-alcohol-purchases")]
+    public async Task<PartyUserAlcoholPurchaseDto> UpdateAlcoholPurchases(Guid partyId, PartyUserAlcoholPurchaseDto purchaseDto)
+    {
+        // Call the repository method to update purchases and return updated data
+        return await partyAlcoholRepository.UpdateAlcoholPurchasesAsync(partyId, purchaseDto);
+    }
+    
 }
+
+

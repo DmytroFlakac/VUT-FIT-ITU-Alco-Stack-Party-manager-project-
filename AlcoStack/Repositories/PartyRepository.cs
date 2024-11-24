@@ -32,7 +32,8 @@ public class PartyRepository(AppDataContext context,  IPartyAlcoholRepository pa
         existingParty.Photo = party.Photo;
         existingParty.Name = party.Name;
         existingParty.Description = party.Description;
-        existingParty.Date = party.Date;
+        existingParty.date = party.date;
+        existingParty.preparationDate = party.preparationDate;
         existingParty.Location = party.Location;
         if ((existingParty.Liquors != party.Liquors) && party.Liquors)
         {
@@ -95,14 +96,43 @@ public class PartyRepository(AppDataContext context,  IPartyAlcoholRepository pa
 
     public async Task<Party?> DeleteAsync(Guid id)
     {
-        var existingParty = await context.Parties.FirstOrDefaultAsync(x => x.Id == id);
+        // Fetch the party
+        var existingParty = await context.Parties
+            .Include(p => p.PartyUserAlcohols) // Include related PartyUserAlcohol records
+            .Include(p => p.Alcohols) // Include related PartyAlcohol records
+            .Include(p => p.Users) // Include related UserParty records
+            .FirstOrDefaultAsync(x => x.Id == id);
+
         if (existingParty == null)
         {
-            throw new Exception("Party not found");
+            return null;
         }
 
+        // Remove related PartyUserAlcohol records
+        if (existingParty.PartyUserAlcohols != null)
+        {
+            context.PartyUserAlcohols.RemoveRange(existingParty.PartyUserAlcohols);
+        }
+
+        // Remove related PartyAlcohol records
+        if (existingParty.Alcohols != null)
+        {
+            context.PartyAlcohols.RemoveRange(existingParty.Alcohols);
+        }
+
+        // Remove related UserParty records
+        if (existingParty.Users != null)
+        {
+            context.UserParties.RemoveRange(existingParty.Users);
+        }
+
+        // Remove the party itself
         context.Parties.Remove(existingParty);
+
+        // Save changes to the database
         await context.SaveChangesAsync();
+
         return existingParty;
     }
+
 }

@@ -2,6 +2,7 @@
 using AlcoStack.Interface;
 using AlcoStack.Dtos;
 using AlcoStack.Data;
+using AlcoStack.Enums;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -77,27 +78,34 @@ public class UserAlcoholRepository(AppDataContext context) : IUserAlcoholReposit
         return userAlcohol;
     }
 
-    public async Task<ICollection<Alcohol>> GetAlcoholsByUserNameAsync(string userName)
+    public async Task<ICollection<UpdateAlcoholRatingDto>> GetAlcoholRatingsByUserNameAsync(string userName)
     {
-        var userAlcohols = await context.UserAlcohols
+        var ratingsWithIds = await context.UserAlcohols
             .Where(x => x.UserName == userName)
-            .Include(x => x.Alcohol)
-            .Select(x => x.Alcohol)
+            .Select(x => new UpdateAlcoholRatingDto
+            {
+                AlcoholId = x.AlcoholId,
+                Rating = x.Rating
+            }) // Map to DTO
             .ToListAsync();
-        return userAlcohols;
+
+        return ratingsWithIds;
     }
 
-    public async Task<UserAlcohol> UpdateVolumeAsync(string userName, Guid alcoholId, int volume)
+
+
+
+    public async Task<UserAlcohol> UpdateVolumeAsync(string userName, string name, int volume)
     {
         var userAlcohol = await context.UserAlcohols
-            .FirstOrDefaultAsync(x => x.UserName == userName && x.AlcoholId == alcoholId);
+            .FirstOrDefaultAsync(x => x.UserName == userName && x.Alcohol.Name == name);
         
         if (userAlcohol == null)
         {
             throw new Exception("UserAlcohol not found");
         }
         
-        userAlcohol.Volume = volume;
+        //userAlcohol.Volume = volume;
         
         context.UserAlcohols.Update(userAlcohol);
         await context.SaveChangesAsync();
@@ -105,22 +113,44 @@ public class UserAlcoholRepository(AppDataContext context) : IUserAlcoholReposit
         return userAlcohol;
     }
 
-    public async Task<UserAlcohol> UpdateRatingAsync(string userName, Guid alcoholId, int rating)
-    {
-        var userAlcohol = await context.UserAlcohols
-            .FirstOrDefaultAsync(x => x.UserName == userName && x.AlcoholId == alcoholId);
+   
+   public async Task<UserAlcohol> UpdateRatingAsync(string userName, Guid alcoholId, int rating)
+   {
+       var userAlcohol = await context.UserAlcohols
+           .FirstOrDefaultAsync(x => x.UserName == userName && x.AlcoholId == alcoholId);
         
-        if (userAlcohol == null)
-        {
-            throw new Exception("UserAlcohol not found");
-        }
+       if (userAlcohol == null)
+       {
+           throw new Exception("UserAlcohol not found");
+       }
         
-        userAlcohol.Rating = rating;
-        
-        context.UserAlcohols.Update(userAlcohol);
-        await context.SaveChangesAsync();
-        return userAlcohol;
-    }
+       userAlcohol.Rating = rating;
+       context.UserAlcohols.Update(userAlcohol);
+       await context.SaveChangesAsync();
+       return userAlcohol;
+   }
+   public async Task<List<UserAlcohol>> UpdateAlcoholRatingsByTypeAsync(string userName, AlcoType type, List<UpdateAlcoholRatingDto> ratings)
+   {
+       var userAlcohols = await context.UserAlcohols
+           .Where(ua => ua.UserName == userName && ua.Alcohol.Type == type)
+           .ToListAsync();
+
+       foreach (var ratingDto in ratings)
+       {
+           var userAlcohol = userAlcohols.FirstOrDefault(ua => ua.AlcoholId == ratingDto.AlcoholId);
+           if (userAlcohol != null)
+           {
+               userAlcohol.Rating = ratingDto.Rating;
+           }
+       }
+
+       // Збереження змін у базі даних
+       await context.SaveChangesAsync();
+
+       // Повернення оновленого списку UserAlcohol
+       return userAlcohols;
+   }
+
 
     public async Task<ICollection<UserAlcohol>> GetAllAsync()
     {

@@ -52,14 +52,74 @@ public class UserRepository(AppDataContext context) : IUserRepository
     }
     
     public async Task<User?> DeleteAsync(string userName)
+{
+    // Fetch the user
+    var user = await context.Users
+        .Include(u => u.CreatedParties) // Include parties created by the user
+        .Include(u => u.Parties) // Include parties the user is a participant in
+        .ThenInclude(up => up.Party)
+        .FirstOrDefaultAsync(user => user.UserName == userName);
+
+    if (user == null)
     {
-        var user = await context.Users.FirstOrDefaultAsync(user => user.UserName == userName);
-        if (user == null)
-        {
-            throw new Exception("User not found");
-        }
-        context.Users.Remove(user);
-        await context.SaveChangesAsync();
-        return user;
+        throw new Exception("User not found");
     }
+
+    // Handle parties created by the user
+    foreach (var createdParty in user.CreatedParties)
+    {
+        // Remove all PartyUserAlcohol entries related to the party
+        var partyUserAlcohols = await context.PartyUserAlcohols
+            .Where(pua => pua.PartyId == createdParty.Id)
+            .ToListAsync();
+
+        context.PartyUserAlcohols.RemoveRange(partyUserAlcohols);
+
+        // Remove the party itself
+        context.Parties.Remove(createdParty);
+    }
+
+    // Handle parties the user is a participant in
+    foreach (var userParty in user.Parties)
+    {
+        var partyId = userParty.PartyId;
+
+        // Adjust volumes in PartyAlcohols
+        var userAlcohols = await context.PartyUserAlcohols
+            .Where(pua => pua.UserName == user.Id && pua.PartyId == partyId)
+            .ToListAsync();
+
+        foreach (var userAlcohol in userAlcohols)
+        {
+            var partyAlcohol = await context.PartyAlcohols
+                .FirstOrDefaultAsync(pa => pa.PartyId == partyId && pa.AlcoholId == userAlcohol.AlcoholId);
+
+            if (partyAlcohol != null)
+            {
+                // Subtract the user's volume from the party's volume
+                partyAlcohol.Volume -= userAlcohol.Volume;
+
+                // Ensure the volume doesn't go below zero
+                if (partyAlcohol.Volume < 0)
+                {
+                    partyAlcohol.Volume = 0;
+                }
+            }
+        }
+
+        // Remove PartyUserAlcohol entries for this user
+        context.PartyUserAlcohols.RemoveRange(userAlcohols);
+
+        // Remove the UserParty entry
+        context.UserParties.Remove(userParty);
+    }
+
+   
+
+    // Save changes to the database
+    await context.SaveChangesAsync();
+
+    return user;
+}
+
 }

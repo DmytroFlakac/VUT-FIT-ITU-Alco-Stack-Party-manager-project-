@@ -9,7 +9,8 @@ public static class PartyMapper
     {
         Name = party.Name,
         Description = party.Description,
-        Date = party.Date,
+        date = party.date,
+        preparationDate = party.preparationDate,
         Location = party.Location,
         Liquors = party.Liquors,
         LowAlcohol = party.LowAlcohol,
@@ -26,7 +27,8 @@ public static class PartyMapper
     {
         Name = partyDto.Name,
         Description = partyDto.Description,
-        Date = partyDto.Date,
+        date = partyDto.date,
+        preparationDate = partyDto.preparationDate,
         Location = partyDto.Location,
         Photo = partyDto.Photo,
         CreatorUserName = partyDto.CreatorUserName,
@@ -36,7 +38,8 @@ public static class PartyMapper
     {
         Name = partyDto.Name,
         Description = partyDto.Description,
-        Date = partyDto.Date,
+        date = partyDto.date,
+        preparationDate = partyDto.preparationDate,
         Location = partyDto.Location,
         Liquors = partyDto.Liquors,
         LowAlcohol = partyDto.LowAlcohol,
@@ -52,7 +55,7 @@ public static class PartyMapper
         PartyId = party.Id,
         Name = party.Name,
         Description = party.Description,
-        Date = party.Date,
+        date = party.date,
         CreatedByMe = party.CreatorUserName == userName,
     };
 }

@@ -26,8 +26,5 @@ public class RegisterDto
 
     public string? Phone { get; set; }  
     public string? Bio { get; set; }
-    [JsonIgnore]    
-    public DateTime CreatedDate { get; set; } = DateTime.Now;
-    [JsonIgnore]
-    public DateTime UpdatedDate { get; set; } = DateTime.Now;
+   
 }
