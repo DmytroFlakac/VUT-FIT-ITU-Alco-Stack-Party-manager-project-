@@ -1,11 +1,12 @@
 ﻿.slider-container {
+    margin-top: 10px;
     display: flex;
     align-items: center;
-    background: linear-gradient(90deg, #D5D5D5 88%, #737373 100%);
-    border-radius: 25px;
-    padding: 7px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    padding: 8px;
     /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
-    width: 100%;
+    width: 90%;
 }
 
 
@@ -35,11 +36,19 @@
     -webkit-appearance: none;
     width: 75%;
     height: 8px;
-    background: #ddd;
+    background: linear-gradient(
+            to right,
+            #007bff 0%,
+            #007bff calc(var(--value, 0) * 10%),
+            #ddd calc(var(--value, 0) * 10%),
+            #ddd 100%
+    ); /* Blue up to the value, gray afterward */
     border-radius: 5px;
     outline: none;
     opacity: 0.7;
-    transition: opacity .2s;
+    transition: all 0.3s ease;
+    --value: 0; /* Default value for slider */
+    --thumb-color: gray; /* Default thumb color */
 }
 
 .slider-range::-webkit-slider-thumb {
@@ -47,18 +56,16 @@
     appearance: none;
     width: 20px;
     height: 20px;
-    background: gray;
+    background: var(--thumb-color); /* Use the custom property */
     border-radius: 50%;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.slider-range::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    background: gray;
-    border-radius: 50%;
-    cursor: pointer;
-}
+
+
+
+
 
 @font-face {
     font-family: 'Halant';

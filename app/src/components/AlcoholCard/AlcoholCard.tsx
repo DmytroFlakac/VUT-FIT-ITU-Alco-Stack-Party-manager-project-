@@ -1,42 +1,54 @@
-﻿import React from 'react';
-import { Card } from 'react-bootstrap';
+﻿/**
+ * ==============================================================
+ * Component: AlcoholCard
+ * Author: Yaroslav Hryn
+ * Description: Displays an alcohol item with its ranking visually styled.
+ * ==============================================================
+ */
+import React from 'react';
+import alcorankback from "../../assets/alcorankback.svg";
 import { AlcoholGet } from '../../Models/Alcohol.tsx';
 
-// Define the type for the component props
+
 export type AlcoholCardProps = {
     alcohol: AlcoholGet;
+    rank: number;
 };
 
-// Define the AlcoholCard component
-const AlcoholCard: React.FC<AlcoholCardProps> = ({ alcohol }) => {
-    // Determine the alcohol type label based on the numeric value
-    const getAlcoholTypeLabel = (type: number) => {
-        return type === 0
-            ? 'Liquor'
-            : type === 1
-                ? 'Low Alcohol'
-                : type === 2
-                    ? 'Mid Alcohol'
-                    : type === 3
-                        ? 'High Alcohol'
-                        : 'Unknown';
-    };
 
+const AlcoholCard: React.FC<AlcoholCardProps> = ({ alcohol, rank }) => {
     return (
-        <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={alcohol.photo} alt={alcohol.name} />
-            <Card.Body>
-                <Card.Title>{alcohol.name}</Card.Title>
-                <Card.Text>
-                    {alcohol.description}
-                </Card.Text>
-                <Card.Footer>
-                    <small className="text-muted">
-                        Type: {getAlcoholTypeLabel(alcohol.type)}
-                    </small>
-                </Card.Footer>
-            </Card.Body>
-        </Card>
+        <div
+            style={{
+                width: '520px',
+                height: '50px',
+                backgroundImage: `url(${alcorankback})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                borderRadius: '8px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: 'none',
+                color: 'white',
+                fontFamily: 'Halant, serif',
+                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                textAlign: 'center',
+                fontSize: '1.5rem',
+            }}
+        >
+            {alcohol.name}
+            <span
+                style={{
+                    position: 'absolute',
+                    right: '30px',
+                    fontSize: '1.5rem',
+                    fontFamily: 'Halant, serif',
+                }}
+            >
+                {rank}
+            </span>
+        </div>
     );
 };
 

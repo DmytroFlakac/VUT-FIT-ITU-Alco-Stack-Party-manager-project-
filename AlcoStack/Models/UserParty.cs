@@ -7,4 +7,5 @@ public class UserParty
     
     public Guid PartyId { get; set; }
     public Party Party { get; set; }
+
 }

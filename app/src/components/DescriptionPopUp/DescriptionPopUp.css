@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'Karla-Bold';
+    src: url('../../assets/fonts/Karla/static/Karla-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'InterRegular';
+    src: url('../../assets/fonts/inter/Inter-Regular.otf') format('truetype');
+}
+
+.descrioption-confirm {
+    background-color: black;
+    border: 1px solid #50C5FF;
+    border-radius: 20px;
+    width: 150px;
+    padding: 10px;
+    color: white;
+    font-family: 'Karla-Bold', sans-serif;
+    font-size: 20px; /* Размер текста */
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 20px auto;
+}
+
+.description-title-card {
+    font-family: 'Karla-Bold', sans-serif;
+    font-size: 40px;
+    color: #263238;
+    /*margin-bottom: 8px;*/
+    text-align: center;
+    white-space: nowrap;
+}
+
+.description-popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(20px);
+}
+
+.small-confirm {
+    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 15px;
+}

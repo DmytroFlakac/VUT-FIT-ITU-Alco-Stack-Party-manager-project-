@@ -1,13 +1,185 @@
-.square-container {
+
+/*fonts*/
+@font-face {
+    font-family: 'Karla-Bold';
+    src: url('../../assets/fonts/Karla/static/Karla-Bold.ttf') format('truetype');
+}
+
+
+
+@font-face {
+    font-family: 'Karla-Regular';
+    src: url('../../assets/fonts/Karla/static/Karla-Regular.ttf') format('truetype');
+}
+/*fonts*/
+
+body, html {
+    overflow: hidden;
+    height: 100%;
+}
+
+.square-container-register {
     position: relative;
     width: 100%;
-    height: auto;
+    height: 100%;
     max-width: 800px;
     max-height: 1900px;
     margin: 0 auto;
-    background-color: white;
     border-radius: 10px;
-    box-shadow: 0 8px 30px rgba(255, 255, 255, 1), /* Основная большая тень */
-    0 5px 15px rgba(255, 255, 255, 1); /* Дополнительная мягкая тень */
     z-index: 1;
+}
+
+.container-fluid-register {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    min-height: 100vh;
+    background-position: center bottom;
+    background-attachment: fixed;
+}
+
+.full-height-register {
+    min-height: 100vh;
+
+}
+
+.party-icon-register {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: -2px;
+    left: -198px;
+    z-index: 1000;
+}
+
+.card-register {
+    background-image: url('../../assets/signUp_card.svg');
+    background-size: cover; /* Scale the background to fit the container */
+    background-position: center; /* Keep the image centered */
+    word-wrap: break-word; /* Ensure text doesn't overflow */
+    border: 3px solid rgba(79, 40, 233, 0.5); /* First semi-transparent blue border */
+    border-radius: 10px; /* Rounded corners */
+    background-repeat: no-repeat;
+    max-height: 100vh;
+    width: 100%;
+    max-width: 600px;
+    overflow-y: auto; /* Enable vertical scrolling */
+    scroll-behavior: smooth; /* Smooth scrolling behavior */
+    scrollbar-width: none; /* Hides scrollbar in Firefox */
+    -ms-overflow-style: none; /* Hides scrollbar in IE and Edge */
+    border-radius: 10px;
+    transform: translate(-100px, 40px);
+}
+
+.card-register .react-datepicker__triangle {
+    display: none;
+}
+
+/*card body*/
+h1.card-title-register {
+    font-family: 'Karla-Bold', sans-serif;
+    font-size: 40px;
+    color: #263238; /* Apply the color */
+    margin-bottom: 16px; /* Keep the margin for spacing */
+    text-align: center; /* Keep the text centered */
+    white-space: nowrap;
+}
+
+.input_titles-register {
+    font-family: 'Karla-Bold', sans-serif; /* Use the Halant-Bold font */
+    font-size: 16px;
+    color: #263238; /* Apply the color */
+    margin-bottom: 4px; /* Keep the margin for spacing */
+    text-align: center; /* Keep the text centered */
+    white-space: nowrap;
+}
+
+.custom-input-register {
+    border-radius: 20px !important;
+    border: 1px solid #90A4AE;
+    padding: 10px 15px;
+    font-size: 16px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+}
+.custom-input-register:focus {
+    border-color: #90A4AE;
+    outline: none;
+}
+
+.custom-input-register::placeholder {
+    color: #90A4AE;
+    font-family: 'Karla-Regular', sans-serif;
+}
+
+.is-invalid-register {
+    border-color: #ff6c6c;
+}
+
+.invalid-feedback-register {
+    color: #ff6c6c;
+    font-size: 14px;
+}
+/*card body*/
+
+.text-alrdy-register {
+    font-family: 'Karla-Bold', sans-serif;
+    color: #263238;
+}
+
+.text-signin-register {
+    font-family: 'Karla-Bold', sans-serif;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.confirm-button-register {
+    background-color: black;
+    border: 1px solid #50C5FF;
+    border-radius: 20px;
+    width: 470px;
+    padding: 10px;
+    color: white;
+    font-family: 'Karla-Bold', sans-serif;
+    font-size: 20px; /* Размер текста */
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 0 auto;
+}
+
+.confirm-button-register:hover {
+    background-color: #333;
+}
+
+/*datepicker*/
+
+
+.calendar-icon-register {
+    width: 25px;
+    height: auto;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+
+
+
+.gender-select-option-register {
+    color: #90A4AE;
+    font-family: 'Karla-Regular', sans-serif;
+}
+
+.gender-select-option-register-bold {
+    color: #263238;
+    font-family: 'Karla-Bold', sans-serif;
+}
+
+
+.gender-select-option-register:hover {
+    color: #263238;
 }

@@ -1,0 +1,193 @@
+.full-height-partypage {
+    min-height: 100vh;
+
+}
+
+@font-face {
+    font-family: 'Halant';
+    src: url('../../assets/fonts/halant/Halant-SemiBold.ttf') format('truetype');
+}
+
+.main-text-partypage {
+    font-family: 'Halant', serif;
+    color: #000000;
+    font-size: 2rem;
+    text-align: center;
+
+}
+
+.party-id-container {
+
+
+    position: relative;
+    top: -0px;
+}
+
+.party-id-input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.party-id-input {
+    width: 180px;
+    text-align: center;
+    font-family: 'Halant', serif;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 5px;
+    height: 30px;
+}
+
+.party-id-button {
+    font-family: 'Halant', serif;
+    font-size: 14px;
+    color: black;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 5px 10px;
+    height: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.party-id-button:hover {
+    background-color: #e6e6e6;
+}
+
+.party-id-title {
+    font-family: 'Halant', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: black;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.Toastify {
+    /*display: none;*/
+}
+.cocktails-section {
+    position: relative;
+}
+
+.view-cocktails-button {
+
+    top: 10px; /* Adjust the distance from the top of the page */
+    right: 10px; /* Adjust the distance from the right edge of the page */
+    z-index: 1000; /* Ensure the button is above other elements */
+}
+
+.party-icon-partypage {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: -2px;
+    left: -198px;
+    z-index: 1000;
+}
+
+.container-fluid-partypage {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    min-height: 100vh;
+    background-position: center bottom;
+    background-attachment: fixed;
+}
+
+.square-container-partypage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 800px;
+    max-height: 1900px;
+    margin: 0 auto;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.btn-edit-partypage {
+    position: absolute;
+    top: 50px;
+    right: 31px;
+    background: none;
+    /*border: 1px solid black;*/
+    padding: 0;
+    cursor: pointer;
+}
+
+.btn-edit-partypage img {
+    width: 100px;
+    height: 100px;
+}
+
+.btn-userlist {
+    position: absolute;
+    top: 50px;
+    /*height: 10%;*/
+    right: 1px;
+    background: none;
+    /*border: 1px solid black;*/
+    flex-direction: column; /* Ensures the image and text stack vertically */
+    align-items: center; /* Centers the content */
+    justify-content: center; /* Centers vertically */
+    padding-top: -100px;
+    cursor: pointer;
+}
+
+.btn-userlist img {
+    width: 120px;
+    height: 120px;
+}
+.btn-creator-userlist{
+    position: absolute;
+    top: 110px;
+    /*height: 10%;*/
+    right: 1px;
+    background: none;
+
+    /*border: 1px solid black;*/
+    flex-direction: column; /* Ensures the image and text stack vertically */
+    align-items: center; /* Centers the content */
+    justify-content: center; /* Centers vertically */
+    padding-top: -100px;
+    cursor: pointer;
+}
+.btn-creator-userlist img {
+    width: 120px;
+    height: 115px;
+}
+
+.btn-delete-partypage {
+    position: absolute;
+    top: 640px;
+    right: 13px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.btn-delete-partypage img {
+    width: 110px;
+    height: 110px;
+}
+
+.btn-leave-partypage {
+    position: absolute;
+    top: 640px;
+    right: 13px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.btn-leave-partypage img {
+    width: 110px;
+    height: 110px;
+}
+

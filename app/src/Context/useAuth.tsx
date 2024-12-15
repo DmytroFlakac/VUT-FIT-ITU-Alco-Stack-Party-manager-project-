@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import React from "react";
 import axios from "axios";
 
+
 type UserContextType = {
     user: UserProfile | null;
     token: string | null;
@@ -80,7 +81,7 @@ export const UserProvider = ({ children }: Props) => {
         };
 
         console.group("API Request Data: Register User");
-        console.log("Endpoint: /register");
+
         console.log("Payload:", userObj);
         console.groupEnd();
 
@@ -99,7 +100,7 @@ export const UserProvider = ({ children }: Props) => {
             );
 
             console.group("API Response Data: Register User");
-            console.log("Response:", res?.data);
+
             console.groupEnd();
 
             if (res) {
@@ -135,18 +136,14 @@ export const UserProvider = ({ children }: Props) => {
             console.error("Registration error:", error);
         }
     };
-
     const loginUser = async (username: string, password: string) => {
-        // console.group("API Request Data: Login User");
-        // console.log("Endpoint: /login");
-        // console.log("Payload:", { username, password });
-        // console.groupEnd();
+
 
         try {
             const res = await loginAPI(username, password);
 
             console.group("API Response Data: Login User");
-            console.log("Response:", res?.data);
+
             console.groupEnd();
 
             if (res) {
@@ -172,13 +169,14 @@ export const UserProvider = ({ children }: Props) => {
 
                 setToken(token);
                 setUser(userObj);
-                console.log("UserObj");
+
                 console.log(userObj);
 
 
                 navigate("/home");
             }
         } catch (error) {
+            console.log("dsgdsdgfdfggdg");
             toast.warning("Server error occurred");
             console.error("Login error:", error);
         }

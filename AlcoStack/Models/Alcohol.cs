@@ -18,4 +18,7 @@ public class Alcohol
     public ICollection<PartyAlcohol> Parties { get; set; } = new List<PartyAlcohol>();
     
     public ICollection<UserAlcohol> Users { get; set; } = new List<UserAlcohol>();
+    
+    public ICollection<PartyUserAlcohol> PartyUserAlcohols { get; set; } = new List<PartyUserAlcohol>();
+
 }

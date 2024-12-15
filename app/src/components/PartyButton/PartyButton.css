@@ -9,3 +9,7 @@
     src: url('../../assets/fonts/halant/Halant-Regular.ttf') format('truetype');
     font-weight: 400;
 }
+.party-button{
+    margin-right: 10px;
+    width: 600px;
+}

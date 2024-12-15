@@ -1,8 +1,8 @@
 ﻿import React from 'react';
 import PartyButton from '../PartyButton/PartyButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import './PartyButtonList.css';
+import party_button from "../../assets/your party.svg";
 
 interface PartyButtonListProps {
     parties: {
@@ -15,22 +15,23 @@ interface PartyButtonListProps {
 }
 
 const PartyButtonList: React.FC<PartyButtonListProps> = ({ parties }) => {
-    const partyStyle: React.CSSProperties = {
-        background: 'linear-gradient(to right, rgba(74, 67, 67, 0.65), rgba(176, 159, 159, 0.65))',
-        color: '#FFFFFF',
-        fontFamily: 'Halant Medium',
-        padding: '10px',
-        borderRadius: '5px 5px 0 0', // Скругление для верха
-    };
-
     return (
-        <div className="w-100">
+        <div className="w-
+        100"   style={{
+            // marginTop: "100px",
+            width: '600px',
+        }}>
             {/* Заголовок поза скрол-контейнером */}
-            <h4 className="p-2 rounded-top-4" style={partyStyle}>Your Parties</h4>
+            <div className="party-header"
+            style={{backgroundImage: `url(${party_button})`,backgroundSize: "contain", backgroundRepeat: 'no-repeat',
+                width: '600px', height: '60px', marginLeft: '0px'
+            }}></div>
 
             {/* Скрол-контейнер для списку партій */}
-            <div className="scroll-container w-100">
-                <div className="list-group w-100">
+            <div className="scroll-container " style={{
+
+            }}>
+                <div className="list-group " style={{position:"relative", marginLeft: '50px'}}>
                     {parties.map((party, index) => (
                         <PartyButton
                             key={index}

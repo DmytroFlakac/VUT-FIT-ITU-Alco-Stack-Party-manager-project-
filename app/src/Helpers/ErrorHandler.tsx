@@ -15,6 +15,7 @@ export const handleError = (error: unknown) => {
                 }
             }
         } else if (err?.data) {
+            console.log("dasdsads");
             toast.warning(err.data);
         } else if (err?.status === 401) {
             toast.warning("Please login");

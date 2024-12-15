@@ -1,0 +1,104 @@
+.full-height-welcome {
+    min-height: 100vh;
+
+}
+
+
+
+.container-fluid-welcome {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    min-height: 100vh;
+    background-position: center bottom;
+    background-attachment: fixed;
+}
+
+.square-container-welcome {
+    position: relative;
+    width: 100%;
+    height: 80%;
+    max-width: 1000px;
+    /*max-height: 1;*/
+    margin: 0 auto;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+@font-face {
+    font-family: 'Halant-Bold';
+    src: url('../../assets/fonts/halant/Halant-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Halant-SemiBold';
+    src: url('../../assets/fonts/halant/Halant-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'VT323';
+    src: url('../../assets/fonts/VT323-Regular.ttf') format('truetype');
+}
+
+
+
+.party-icon-welcome {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: -2px;
+    left: -15px;
+    z-index: 1000;
+}
+
+.welcome-to-party {
+    font-family: 'Halant-SemiBold', sans-serif;
+    font-size: 20px;
+    width: 80%;
+    color: #000000;
+    position: absolute;
+    top: 150px;
+    /*left: -30px;*/
+    height: 100px; /* Ensure the container has a height */
+}
+
+
+
+.home-text-welcome {
+    font-family: 'Halant', sans-serif;
+    font-size: 27px;
+    margin-left: 13px;
+    position: absolute;
+    top: -195px;
+    left: 904px;
+    color: black;
+}
+
+.home-link-welcome {
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    margin-bottom: -20px;
+}
+
+.home-icon-welcome {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: -240px;
+    left: 870px;
+
+}
+
+.text-center-welcome {
+    font-family: 'Halant', serif;
+    font-size: 20px !important;
+
+}
+
+@media (min-width: 768px) {
+    .text-center-welcome {
+        font-size: 40px !important;
+        color: #000000;
+    }
+}

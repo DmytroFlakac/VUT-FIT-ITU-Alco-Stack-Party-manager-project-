@@ -5,25 +5,45 @@
     font-style: normal;
 }
 
-/* src/components/PartyButtonList.css */
-.scroll-container {
-    max-height: 290px; /* Висота контейнера з можливістю скролу */
-    overflow-y: auto; /* Вмикаємо вертикальний скролінг */
+
+.party-header {
+    
+    color: #000000;
+    font-family: 'Halant Medium';
     padding: 10px;
-    border-radius: 5px;
-   /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
 }
 
+
+.scroll-container {
+    width: 100%;
+
+    max-height: 190px;
+    overflow-y: auto;
+
+    scroll-behavior: smooth; /* Corrected syntax for scroll behavior */
+    scrollbar-width: none; /* Hides scrollbar in Firefox */
+    -ms-overflow-style: none; /* Hides scrollbar in IE and Edge */
+    /*padding: 10px;*/
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari, etc.) */
 .scroll-container::-webkit-scrollbar {
-    width: 8px; /* Ширина скролбару */
+    display: none;
 }
 
 .scroll-container::-webkit-scrollbar-thumb {
-    background-color: #888; /* Колір скролбару */
+    background-color: #888;
     border-radius: 10px;
 }
 
 .scroll-container::-webkit-scrollbar-thumb:hover {
-    background-color: #555; /* Колір скролбару при наведенні */
+    background-color: #555;
 }
+
+
 

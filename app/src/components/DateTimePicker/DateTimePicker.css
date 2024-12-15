@@ -1,0 +1,151 @@
+@font-face {
+    font-family: 'Karla-Bold';
+    src: url('../../assets/fonts/Karla/static/Karla-Bold.ttf') format('truetype');
+}
+
+.react-datepicker {
+    position: relative;
+    background-color: white;
+    border-radius: 12px;
+    border: none;
+}
+
+.input_titles-datepicker {
+    font-family: 'Karla-Bold', sans-serif; /* Use the Halant-Bold font */
+    font-size: 16px;
+    color: #263238; /* Apply the color */
+    margin-bottom: 4px; /* Keep the margin for spacing */
+    text-align: center; /* Keep the text centered */
+    white-space: nowrap;
+}
+
+.react-datepicker::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: linear-gradient(130deg, rgb(87, 87, 236), rgb(255, 255, 255));
+    border-radius: 12px;
+    z-index: -1;
+}
+
+.react-datepicker__header {
+    border-radius: 12px 12px 0 0;
+    background-color: white;
+    border-bottom: 1px solid #828282;
+}
+
+.react-datepicker__current-month {
+    font-family: 'Lato-Bold', sans-serif;
+    color: #828282;
+    font-size: 16px;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.react-datepicker__day-names {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day {
+    font-family: 'Lato-Medium', sans-serif;
+    color: #000000;
+}
+
+.react-datepicker__navigation--previous,
+.react-datepicker__navigation--next {
+    border-color: black;
+}
+
+.react-datepicker__day:hover,
+.react-datepicker__day--selected {
+    background-color: #1294F2;
+    border-radius: 50%;
+    color: white;
+}
+
+
+
+.datepicker-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto !important;
+}
+
+.datepicker-title {
+    font-family: 'Karla-Bold', sans-serif; /* Use the Halant-Bold font */
+    font-size: 16px;
+    color: #263238; /* Apply the color */
+    margin-bottom: 4px; /* Keep the margin for spacing */
+    margin-left: -400px;
+    text-align: center; /* Keep the text centered */
+    white-space: nowrap;
+}
+
+.datepicker-input-wrapper {
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    border: 1px solid #90A4AE;
+    padding: 10px 15px;
+    font-size: 16px;
+    width: 500px;
+    box-sizing: border-box;
+    background-color: white;
+    max-width: 480px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.datepicker-input-wrapper:focus-within {
+    border-color: #90A4AE;
+}
+
+.datepicker-wrapper .react-datepicker__input-container input {
+    display: none; /* Hides the input field */
+}
+
+.datepicker-input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 16px;
+    font-family: 'Karla-Regular', sans-serif;
+    color: #263238;
+    padding-right: 40px;
+}
+
+.datepicker-input::placeholder {
+    color: #90A4AE;
+}
+
+.datepicker-icon {
+    position: absolute;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.clear-icon {
+    position: absolute;
+    right: 235px;
+    top: 6px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #90A4AE;
+    cursor: pointer;
+    user-select: none;
+}
+
+.clear-icon:hover {
+    color: #ff6c6c;
+}

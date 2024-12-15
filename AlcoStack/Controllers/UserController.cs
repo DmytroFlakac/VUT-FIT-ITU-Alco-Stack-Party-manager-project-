@@ -3,6 +3,7 @@ using AlcoStack.Extensions;
 using AlcoStack.Interface;
 using AlcoStack.Models;
 using AlcoStack.Mappers;
+using AlcoStack.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,7 @@ namespace AlcoStack.Controllers;
         SignInManager<User> signInManager,
         ILogger<UserController> logger,
         IUserAlcoholRepository userAlcoholRepository,
+        IUserRepository userRepository,
         IUserPartyRepository userPartyRepository,
         IFileService fileService,
         IWebHostEnvironment webHostEnvironment)
@@ -31,7 +33,7 @@ namespace AlcoStack.Controllers;
 
             var user = await userManager.Users.Include(x => x.Address).FirstOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());
 
-            if (user == null) return Unauthorized("Invalid username!");
+            if (user == null) return Unauthorized("Invalid username or password!");
 
             var result = await signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
@@ -50,18 +52,16 @@ namespace AlcoStack.Controllers;
                     Address = user.Address.MapToDto(),
                     Phone = user.PhoneNumber,
                     PhotoName = user.PhotoName,
-                    PhotoSrc = user.PhotoName == null ? null : $"{Request.Scheme}://{Request.Host}{Request.PathBase}/Uploads/{user.PhotoName}",
+                    PhotoSrc = user.PhotoName == null ? null : $"{Request.Scheme}://{Request.Host}{Request.PathBase}/images/{user.PhotoName}",
                     Bio = user.Bio,
                     CreatedDate = user.CreatedDate,
                     UpdatedDate = user.UpdatedDate,
-                    FormBackgroundName = user.FormBackgroundName,
-                    FormBackgroundSrc = user.FormBackgroundName == null ? null : $"{Request.Scheme}://{Request.Host}{Request.PathBase}/Uploads/{user.FormBackgroundName}"
-                }
+                   }
             );
         } 
     
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromForm] RegisterDto registerDto)
+        public async Task<IActionResult> Register( RegisterDto registerDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -130,11 +130,9 @@ namespace AlcoStack.Controllers;
                     UpdatedDate = user.UpdatedDate,
                     Phone = user.PhoneNumber,
                     PhotoName = user.PhotoName,
-                    PhotoSrc = $"{Request.Scheme}://{Request.Host}{Request.PathBase}/Uploads/{user.PhotoName}",
+                    PhotoSrc = $"{Request.Scheme}://{Request.Host}{Request.PathBase}/images/{user.PhotoName}",
                     Bio = user.Bio,
                     Gender = user.Gender,
-                    FormBackgroundName = user.FormBackgroundName,
-                    FormBackgroundSrc = $"{Request.Scheme}://{Request.Host}{Request.PathBase}/Uploads/{user.FormBackgroundName}"
                 };
 
                 return Ok(newUserDto);
@@ -183,8 +181,7 @@ namespace AlcoStack.Controllers;
             if (user == null)
                 return NotFound();
 
-            // Get the full path to the "Uploads" directory
-            var uploadsDirectory = Path.Combine(webHostEnvironment.ContentRootPath, "Uploads");
+            var uploadsDirectory = Path.Combine(webHostEnvironment.ContentRootPath, "wwwroot/images");
 
             var userDto = new NewUserDto
             {
@@ -199,9 +196,7 @@ namespace AlcoStack.Controllers;
                 UpdatedDate = user.UpdatedDate,
                 Phone = user.PhoneNumber,
                 PhotoName = user.PhotoName,
-                PhotoSrc = $"{Request.Scheme}://{Request.Host}{Request.PathBase}/Uploads/{user.PhotoName}",
-                FormBackgroundName = user.FormBackgroundName,
-                FormBackgroundSrc = $"{Request.Scheme}://{Request.Host}{Request.PathBase}/Uploads/{user.FormBackgroundName}",
+                PhotoSrc = $"{Request.Scheme}://{Request.Host}{Request.PathBase}/images/{user.PhotoName}",
                 Bio = user.Bio,
                 Gender = user.Gender
             };
@@ -238,9 +233,7 @@ namespace AlcoStack.Controllers;
             if (currentUser == null)
                 return Unauthorized();
     
-            // Ensure the email in the DTO matches the current user's email
-            if (currentUser.Email != userDto.Email)
-                return Forbid();
+            
     
             // Update username if it has changed
             if (currentUser.UserName != userDto.Username)
@@ -293,7 +286,7 @@ namespace AlcoStack.Controllers;
                     if (user.PhotoName != null)
                         DeleteImage(user.PhotoName);
                     user.PhotoName = await SaveImage(photoDto.PhotoFile);
-                    user.PhotoSrc = $"{Request.Scheme}://{Request.Host}{Request.PathBase}/Uploads/{user.PhotoName}";
+                    user.PhotoSrc = $"{Request.Scheme}://{Request.Host}{Request.PathBase}/images/{user.PhotoName}";
                 }
                 else if (user.PhotoName != null && photoDto.PhotoFile == null)
                 {
@@ -304,30 +297,10 @@ namespace AlcoStack.Controllers;
             }
             else
             {
-                user.PhotoSrc = user.PhotoName == null ? null : $"{Request.Scheme}://{Request.Host}{Request.PathBase}/Uploads/{user.PhotoName}";
+                user.PhotoSrc = user.PhotoName == null ? null : $"{Request.Scheme}://{Request.Host}{Request.PathBase}/images/{user.PhotoName}";
             }
             
-            if (photoDto.FormBackgroundChanged)
-            {
-
-                if (photoDto.FormBackgroundFile != null)
-                {
-                    if (user.FormBackgroundName != null)
-                        DeleteImage(user.FormBackgroundName);
-                    user.FormBackgroundName = await SaveImage(photoDto.FormBackgroundFile);
-                    user.FormBackgroundSrc = $"{Request.Scheme}://{Request.Host}{Request.PathBase}/Uploads/{user.FormBackgroundName}";
-                }
-                else if (user.FormBackgroundName != null && photoDto.FormBackgroundFile == null)
-                {
-                    DeleteImage(user.FormBackgroundName);
-                    user.FormBackgroundName = null;
-                    user.FormBackgroundSrc = null;
-                }
-            }
-            else
-            {
-                user.FormBackgroundSrc = user.FormBackgroundName == null ? null : $"{Request.Scheme}://{Request.Host}{Request.PathBase}/Uploads/{user.FormBackgroundName}";
-            }
+            
 
             var result = await userManager.UpdateAsync(user);
     
@@ -357,24 +330,51 @@ namespace AlcoStack.Controllers;
             return Ok(await userAlcoholRepository.AddAsync(userName, alcoholId));
         }
         
-        [HttpPatch("{userName}/update-volume/{alcoholId}")]
-        public async Task<IActionResult> UpdateVolume(string userName, Guid alcoholId, [FromBody] int volume)
+        [HttpPatch("update-volume/{alcoholName}")]
+        public async Task<IActionResult> UpdateVolume( string alcoholName, [FromBody] int volume)
         {
+            var userName = User.GetUsername();
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
         
-            return Ok(await userAlcoholRepository.UpdateVolumeAsync(userName, alcoholId, volume));
+            return Ok(await userAlcoholRepository.UpdateVolumeAsync(userName, alcoholName, volume));
         }
        
-    
-        [HttpPatch("{userName}/update-rating/{alcoholId}")]
-        public async Task<IActionResult> UpdateRating(string userName, Guid alcoholId, [FromBody] int rating)
+        [Authorize]
+        [HttpPatch("update-rating/{alcoholId}")]
+        public async Task<IActionResult> UpdateRating(Guid alcoholId, [FromBody] int rating)
         {
+            var userName = User.GetUsername();
+            
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
         
             return Ok(await userAlcoholRepository.UpdateRatingAsync(userName, alcoholId, rating));
         }
+        
+        [HttpPatch("{userName}/{type}/ratings")]
+        public async Task<IActionResult> UpdateAlcoholRatingsByType(string userName, AlcoType type, [FromBody] List<UpdateAlcoholRatingDto> ratings)
+        {
+            if (ratings == null || !ratings.Any())
+            {
+                return BadRequest("Ratings cannot be empty");
+            }
+
+          
+            var updatedUserAlcohols = await userAlcoholRepository.UpdateAlcoholRatingsByTypeAsync(userName, type, ratings);
+
+            
+            var result = updatedUserAlcohols.Select(ua => new
+            {
+                ua.AlcoholId,
+                ua.Rating
+            });
+
+            return Ok(result);
+        }
+
+       
+
         
         [HttpDelete("{userName}/delete/{alcoholId}")]
         public async Task<IActionResult> DeleteUserAlcohol(string userName, Guid alcoholId)
@@ -414,7 +414,7 @@ namespace AlcoStack.Controllers;
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             
-            var user = await userManager.Users.FirstOrDefaultAsync(x => x.UserName == username);
+            var user = await userRepository.DeleteAsync(username) ;
             
             if (user == null)
                 return NotFound();
@@ -432,7 +432,7 @@ namespace AlcoStack.Controllers;
         {
             string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
             imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
-            var imagePath = Path.Combine(webHostEnvironment.ContentRootPath, "Uploads", imageName);
+            var imagePath = Path.Combine(webHostEnvironment.ContentRootPath, "wwwroot/images", imageName);
             using (var fileStream = new FileStream(imagePath, FileMode.Create))
             {
                 await imageFile.CopyToAsync(fileStream);
@@ -443,7 +443,7 @@ namespace AlcoStack.Controllers;
         [NonAction]
         public void DeleteImage(string imageName)
         {
-            var imagePath = Path.Combine(webHostEnvironment.ContentRootPath, "Uploads", imageName);
+            var imagePath = Path.Combine(webHostEnvironment.ContentRootPath, "wwwroot/images", imageName);
             if (System.IO.File.Exists(imagePath))
                 System.IO.File.Delete(imagePath);
         }

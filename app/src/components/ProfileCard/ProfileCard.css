@@ -3,5 +3,206 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+
 }
+@font-face {
+    font-family: 'HalantSemiBold';
+    src: url('../../assets/fonts/halant/Halant-SemiBold.ttf') format('truetype');
+
+}
+
+@font-face {
+    font-family: 'InterRegular';
+    src: url('../../assets/fonts/inter/Inter-Regular.otf') format('truetype');
+    font-weight: 400;
+}
+
+.photo-upload-container {
+    border-radius: 50%;
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 110px;
+    height: 110px;
+    margin: 0 auto;
+    /*background-color: #f0f0f0;*/
+    overflow: hidden;
+}
+
+
+
+.photo-upload-container img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+}
+
+
+.photo-upload-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+.photo-upload-icon {
+    font-size: 48px;
+    color: #ccc;
+}
+
+
+.invalid-feedback {
+    text-align: center;
+}
+
+.background-upload-container {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 150px;
+    margin: 0 auto;
+    /*background-color: #f5f5f5;*/
+}
+
+
+.background-upload-container img {
+    width: 300px;
+    height: 150px;
+    object-fit: cover;
+}
+
+
+.background-upload-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+.background-upload-icon {
+    font-size: 48px;
+    color: #ccc;
+}
+
+
+.invalid-feedback {
+    text-align: center;
+}
+
+.profile-photo-button {
+    border-radius: 50%;
+    width: 110px;
+    height: 110px;
+    background: none;
+    /*position: relative;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    border: transparent;
+    padding: 0;
+    cursor: pointer;
+}
+
+.profile-photo {
+
+    border-radius: 50%;
+    width: 110px;
+    height: 110px;
+}
+
+
+.profile-name {
+    border-radius: 10px;
+    background: transparent;
+    color: black;
+    /*background: linear-gradient(90deg, #5C5C5C 16%, #353535 82%);*/
+    margin-top: -10px;
+    /*padding: 5px 10px;*/
+    font-family: 'HalantSemiBold';
+}
+
+
+
+.edit-profile-btn {
+    background-image: url('app/src/assets/editprofilebutton.svg'); /* Add the image */
+    background-size: cover; /* Make the image cover the button */
+    background-repeat: no-repeat; /* Prevent tiling */
+    background-position: center; /* Center the image */
+    border: transparent;
+    color: black;
+    font-family: 'HalantSemiBold';
+}
+.edit-profile-btn:hover{
+    background-image: url('app/src/assets/editprofilebutton.svg'); /* Add the image */
+    border: transparent;
+    color: black;
+}
+
+.profile-details-list {
+    margin-top: 10px;
+    color: #000000;
+    padding: 0;
+    font-family: 'InterRegular';
+}
+
+
+.profile-details-list li {
+    margin-bottom: 10px;
+}
+
+
+.profile-details-list span {
+    border-radius: 10px;
+    /*background: linear-gradient(90deg, rgba(92, 92, 92, 0.8) 16%, rgba(53, 53, 53, 0.8) 82%);*/
+    display: inline;
+    padding: 5px 10px;
+    color: #000000;
+}
+
+.blurred-content {
+    filter: blur(8px); /* Створює ефект розмиття */
+    pointer-events: none; /* Забороняє взаємодію з розмитим контентом */
+    transition: filter 0.3s ease-in-out; /* Додає плавність ефекту */
+}
+.form {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+.modal-container, .form-container {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+.modal-content{
+    background: transparent;
+    border: transparent;
+    max-height: 400px;
+}
+
+.alco-cards-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping to the next row */
+    justify-content: center; /* Center the cards horizontally */
+    gap: 16px; /* Add spacing between the cards */
+}
+.foto-modal{
+    background-color: transparent;
+}
+
+

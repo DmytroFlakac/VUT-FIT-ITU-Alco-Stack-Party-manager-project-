@@ -1,0 +1,84 @@
+.strongalco-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 200px;
+    max-height: 150px; /* Set the height to 150px */
+    overflow-y: auto; /* Enable vertical scrolling */
+    scroll-behavior: smooth; /* Enable smooth scrolling */
+    scrollbar-width: none; /* Hide scrollbar */
+    -ms-overflow-style: none; /* Hide scrollbar */
+    /*border: 3px solid #50C5FF;*/
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
+    cursor: pointer;
+}
+
+.strongalco-card:hover {
+    transform: scale(1.00);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.strongalco-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 8px;
+}
+
+.strongalco-card-preferences {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /*margin-top: 16px;*/
+    width: 100%;
+}
+
+.strongalco-preference {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    /*padding: 4px 8px;*/
+}
+
+.strongalco-preference-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.strongalco-preference-label {
+    flex-grow: 1;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #484545;
+}
+
+.strongalco-preference-value {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #000;
+}
+.strongalco-card-image-top {
+    width: 30px;
+    height: 30px;
+    margin-right: 6px;
+    /*margin-top: 8px; !* Add space from the top edge *!*/
+}
+
+.strongalco-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: -10px; /* Space between image and text */
+}
+
+.strongalco-card-text {
+    font-size: 1rem;
+    font-family: 'HalantB', serif;
+    color: #484545;
+    font-weight: bold;
+    text-align: center;
+}

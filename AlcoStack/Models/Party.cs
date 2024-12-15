@@ -16,7 +16,9 @@ public class Party
     
     public string? Photo { get; set; }
     
-    public DateTime Date { get; set; }
+    public DateTime date { get; set; }
+    
+    public DateTime preparationDate { get; set; }
     
     [StringLength(100)]
     public string? Location { get; set; }
@@ -39,6 +41,11 @@ public class Party
     public ICollection<UserParty> Users { get; set; } = new List<UserParty>();
     
     public ICollection<PartyAlcohol> Alcohols { get; set; } = new List<PartyAlcohol>();
+    
+    public ICollection<PartyUserAlcohol> PartyUserAlcohols { get; set; } = new List<PartyUserAlcohol>();
+    
+    public bool IsVolumeEvaluated { get; set; } = false;
+
     
     public DateTime CreatedDate { get; set; } = DateTime.Now;
     

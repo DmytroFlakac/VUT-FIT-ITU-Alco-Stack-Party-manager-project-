@@ -5,7 +5,7 @@ import ChooseAlcoButton from '../ChooseAlcoButton/ChooseAlcoButton';
 
 interface ChooseAlcoButtonProps {
     text: string;
-    icon: string;  // Шлях до зображення
+    icon: string;
     color: string;
     onClick: () => void;
 }
@@ -16,10 +16,10 @@ interface ChooseAlcoButtonListProps {
 
 const ChooseAlcoButtonList: React.FC<ChooseAlcoButtonListProps> = ({ alcoButtons }) => {
     return (
-        <div className="alco-container d-flex flex-column align-items-center">  {/* Використовуємо flexbox для центрування */}
-            <div className="row justify-content-center">
+        <div className="alco-container d-flex flex-column align-items-center">
+            <div className="alco-button-list d-flex justify-content-center">
                 {alcoButtons.map((button, index) => (
-                    <div key={index} className="col-12 col-md-10 mb-4 d-flex justify-content-center">
+                    <div key={index} className="alco-button-wrapper mb-4 mt-2">
                         <ChooseAlcoButton
                             text={button.text}
                             icon={button.icon}

@@ -1,4 +1,12 @@
-﻿/* Заблюрений фон */
+﻿
+@font-face {
+    font-family: 'Karla-Bold';
+    src: url('../../../assets/fonts/Karla/static/Karla-Bold.ttf') format('truetype');
+}
+.mid-alco-title {
+    font-family: 'Karla-Bold', serif;
+    font-size: 40px !important;
+}
 .midalco-modal-backdrop-blur {
     position: fixed;
     top: 0;
@@ -10,7 +18,7 @@
     z-index: 1040;
 }
 
-/* Стиль модального контейнера */
+
 .midalco-modal-container {
     position: fixed;
     top: 50%;
@@ -18,55 +26,56 @@
     transform: translate(-50%, -50%);
     width: 600px;
     height: 367px;
-    /*background-color: black;*/
+
     border-radius: 15px;
     z-index: 1050;
-    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Центр по вертикалі */
-    align-items: center; /* Центр по горизонталі */
-    text-align: center; /* Текст теж по центру */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-/* Вміст модального вікна */
+
 .midalco-modal-content {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Центрування елементів */
-    align-items: center; /* Центрування по горизонталі */
+    justify-content: center;
+    align-items: center;
     width: 100%;
 }
 
 .midalco-btn-save {
-    background-color: rgba(213, 213, 213, 0.86); /* Колір Fill (#D5D5D5) з 86% прозорістю */
-    border: 2px solid #90A4AE; /* Колір Stroke (#90A4AE) */
-    border-radius: 50px; /* Заокруглені краї */
-    padding: 15px 30px; /* Великі розміри кнопки */
+    background-color: black;
+    border: 1px solid #90A4AE;
+    border-radius: 50px;
+    padding: 15px 30px;
     font-size: 18px;
     font-weight: bold;
-    color: black;
+    color: white;
     cursor: pointer;
     margin-top: 20px;
-    width: 60%; /* Ширина на 100% контейнера */
-    max-width: 300px; /* Максимальна ширина */
-    transition: background-color 0.3s ease, border-color 0.3s ease; /* Ефект плавного переходу */
+    margin-bottom: 20px;
+    width: 40%;
+    max-width: 300px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .midalco-btn-save:hover {
-    background-color: rgba(190, 190, 190, 0.86); /* Трохи темніший сірий колір при наведенні */
-    border-color: #78909C; /* Трохи темніший колір Stroke при наведенні */
+    background-color: black;
+    border-color: #78909C;
 }
 
 @media (max-width: 768px) {
     .midalco-modal-container {
-        width: 80%; /* Зменшена ширина для планшетів */
+        width: 80%;
     }
 }
 
-/* Медіа-запит для екранів шириною до 576px (типові смартфони) */
+
 @media (max-width: 576px) {
     .midalco-modal-container {
-        width: 80%; /* Майже повна ширина для мобільних пристроїв */
+        width: 80%;
     }
 }

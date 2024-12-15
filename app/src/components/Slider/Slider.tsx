@@ -7,11 +7,9 @@ interface SliderProps {
     value: number;
     onChange: (value: number) => void;
     imageSrc: string; // Add a new prop for the image source
-    // toggle: boolean;
-    // onToggleChange: () => void;
 }
 
-const Slider: React.FC<SliderProps> = ({ label, value, onChange, imageSrc /* toggle, onToggleChange */ }) => {
+const Slider: React.FC<SliderProps> = ({ label, value, onChange, imageSrc }) => {
     const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         onChange(parseInt(e.target.value, 10));
     };
@@ -19,7 +17,7 @@ const Slider: React.FC<SliderProps> = ({ label, value, onChange, imageSrc /* tog
     return (
         <div className="slider-container">
             <div className="slider-header">
-                <img src={imageSrc} alt="" className="slider-image" /> {/* Image element */}
+                <img src={imageSrc} alt="" className="slider-image" />
                 <span className="slider-label">{label}</span>
             </div>
             <input
@@ -29,11 +27,12 @@ const Slider: React.FC<SliderProps> = ({ label, value, onChange, imageSrc /* tog
                 max="10"
                 value={value}
                 onChange={handleSliderChange}
+                style={{
+                    '--value': value,
+                    '--thumb-color': value === 0 ? 'gray' : '#007bff', // Set thumb color dynamically
+                } as React.CSSProperties} // Use inline styles to pass custom CSS variables
             />
-            {/*<button className={`slider-toggle ${toggle ? 'on' : 'off'}`} onClick={onToggleChange}>*/}
-            {/*    <div className="toggle-circle"></div>*/}
-            {/*</button>*/}
-            <span className="slider-value">{value}</span> {/* Display current value */}
+            <span className="slider-value">{value}</span>
         </div>
     );
 };

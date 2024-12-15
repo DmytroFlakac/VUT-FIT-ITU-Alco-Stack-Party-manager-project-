@@ -1,0 +1,27 @@
+.delete-user {
+    background-color: #f65252;
+    border: 1px solid #50C5FF;
+    border-radius: 20px;
+    width: 100px;
+    height: 45px;
+    padding: 10px;
+    color: white;
+    font-family: 'Karla-Bold', sans-serif;
+    font-size: 15px;
+    transition: background-color 0.3s ease;
+    display: block;
+}
+
+.cancel-user {
+    background-color: #000000;
+    border: 1px solid #50C5FF;
+    border-radius: 20px;
+    width: 100px;
+    height: 45px;
+    padding: 10px;
+    color: white;
+    font-family: 'Karla-Bold', sans-serif;
+    font-size: 15px;
+    transition: background-color 0.3s ease;
+    display: block;
+}

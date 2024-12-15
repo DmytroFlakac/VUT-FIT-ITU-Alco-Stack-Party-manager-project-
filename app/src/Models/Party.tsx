@@ -1,7 +1,10 @@
-﻿export type PartyPost = {
+﻿import {AlcoholVolume} from "./Alcohol.tsx";
+
+export type PartyPost = {
     name: string;
     description: string;
     date: string;
+    preparationDate: string;
     photo: string;
     location: string;
     creatorUserName: string;
@@ -21,6 +24,7 @@ export type PartyDetailGet = {
     description?: string;
     photo?: string;
     date: string;
+    preparationDate: string;
     location?: string;
     liquors: boolean;
     lowAlcohol: boolean;
@@ -34,10 +38,25 @@ export type PartyDetailPut = {
     description?: string;
     photo?: string;
     date: string;
+    preparationDate: string;
     location?: string;
     liquors: boolean;
     lowAlcohol: boolean;
     midAlcohol: boolean;
     highAlcohol: boolean;
     rankLimit: number;
+}
+
+
+export type PartyUserAlcohol = {
+    alcoholVolume: AlcoholVolume[];
+}
+
+export type PartyAlcoholWillBeBought = {
+    name: string;
+    willBeBought: boolean;
+}
+
+export type alcoholPurchases = {
+    PartyAlcoholWillBeBought : PartyAlcoholWillBeBought[];
 }

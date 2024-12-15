@@ -1,0 +1,101 @@
+/* UserDeleteCard.css */
+.user-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 8px 0;
+    background-color: #fff;
+    position: relative;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 12px;
+    background-color: #f0f0f0;
+}
+
+.user-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Modal Styles */
+.user-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    backdrop-filter: blur(40px);
+    align-items: center;
+    justify-content: center;
+    z-index: 1100;
+}
+
+.user-modal-content {
+    background-image: url("../../assets/createpopup.svg");
+    background-size: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 3px solid rgba(79, 40, 233, 0.5); /* First semi-transparent blue border */
+    border-radius: 10px; /* Rounded corners */
+    /*     box-shadow:
+                 -29px 6px 45px rgba(255, 249, 249, 0.25), !* White-ish drop shadow *!
+                 0 0 15px rgba(79, 40, 233, 0.5); !* Purple glow effect around the border *!*/
+    /*backdrop-filter: blur(40px); !* Optional: Adds a frosted-glass blur effect *!*/
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 20px;
+
+    /*box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);*/
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    z-index: 2100;
+}
+
+.modal-header {
+    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.user-modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+
+
+.user-cancel-button {
+    background-color: black;
+    border: 2px solid #50C5FF;
+    border-radius: 20px;
+    width: 150px;
+    padding: 10px;
+    color: white;
+    font-family: 'Karla-Bold', sans-serif;
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 20px auto 10px auto; /* Center the button and add top margin */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}

@@ -1,4 +1,5 @@
-﻿export type Address = {
+﻿
+export type Address = {
     streetAddress?: string;
     city?: string;
     postalCode?: string;
@@ -28,12 +29,12 @@ export type UserProfileToken = {
 export type UserProfile = {
     userName: string;
     email: string;
-    firstName?: string;
-    lastName?: string;
+    firstName?: string | null;
+    lastName?: string | null;
     gender?: number;
     dateOfBirth?: string | null;
     address?: Address;
-    phoneNumber?: string;
+    phoneNumber?: string | null;
     photoName?: string;
     photoSrc?: string;
     bio?: string;
@@ -47,3 +48,5 @@ export type UserPhoto = {
     photoFile?: File | null;
     formBackgroundFile?: File | null;
 };
+
+

@@ -21,19 +21,14 @@ public class User : IdentityUser
     [NotMapped]
     public string? PhotoSrc { get; set; }
     public string? Bio { get; set; }
-    
-    public string? FormBackgroundName { get; set; }
-    
-    [NotMapped]
-    public string? FormBackgroundSrc { get; set; }
-    [NotMapped]
-    public IFormFile? FormBackgroundFile { get; set; }
-    
     public ICollection<UserAlcohol> Alcohols { get; set; } = new List<UserAlcohol>();
     
     public ICollection<Party> CreatedParties { get; set; } = new List<Party>();
     
     public ICollection<UserParty> Parties { get; set; } = new List<UserParty>();
+    
+    public ICollection<PartyUserAlcohol> PartyUserAlcohols { get; set; } = new List<PartyUserAlcohol>();
+
     public DateTime CreatedDate { get; set; } = DateTime.Now;
     public DateTime UpdatedDate { get; set; } = DateTime.Now; 
 }

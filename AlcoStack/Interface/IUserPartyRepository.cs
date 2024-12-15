@@ -9,5 +9,7 @@ public interface IUserPartyRepository
     Task<ICollection<Party>?> GetByUserNameAsync(string userName);
     Task<ICollection<Party>?> GetHistoryByUserNameAsync(string userName);
     Task<ICollection<User>?> GetUsersByPartyIdAsync(Guid partyId);
+
+    
     Task<ICollection<UserParty>> GetAllAsync();
 }

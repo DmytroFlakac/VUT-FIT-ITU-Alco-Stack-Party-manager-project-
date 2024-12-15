@@ -23,6 +23,38 @@
 }
 
 /* Ensure that the modal itself is above the blurred backdrop */
-.rs-modal {
-    z-index: 1050; /* Ensure it's above the backdrop */
+.rs-modal-content{
+    /*background: rgba(255, 255, 255, 0);*/
+    background-image: url("../../assets/createpopup.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+    backdrop-filter: blur(20px);
+    scrollbar-width: none; /* Removes scrollbar in Firefox */
+    -ms-overflow-style: none; /* Hides scrollbar in Internet Explorer */
 }
+.rs-modal-body{
+    scrollbar-width: none; /* Removes scrollbar in Firefox */
+    -ms-overflow-style: none; /* Hides scrollbar in Internet Explorer */
+}
+.modal-title-bold-create {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+.modal-body-scroll-create-party {
+    overflow-y: auto; /* Enable vertical scrolling */
+    scroll-behavior: smooth; /* Smooth scrolling behavior */
+    scrollbar-width: none; /* Hides scrollbar in Firefox */
+    -ms-overflow-style: none; /* Hides scrollbar in IE and Edge */
+
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari, etc.) */
+.modal-body-scroll-create-party::-webkit-scrollbar {
+    display: none;
+
+    background: rgba(79, 40, 233, 0.5);
+}
+

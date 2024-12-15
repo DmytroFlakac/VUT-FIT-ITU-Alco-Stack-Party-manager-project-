@@ -1,25 +1,31 @@
-    import React from 'react';
-    import 'bootstrap/dist/css/bootstrap.min.css';
-    import { Outlet } from 'react-router-dom';
-    import {UserProvider} from "./Context/useAuth.tsx";
-    import { ToastContainer } from "react-toastify";
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Outlet } from 'react-router-dom';
+import { UserProvider } from "./Context/useAuth.tsx";
+import { ToastContainer, Bounce } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
+const App: React.FC = () => {
+    return (
+        <>
+            <UserProvider>
+                <Outlet />
+                <ToastContainer style={{ zIndex: 10055 }}
+                    position="top-center"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="colored"
+                    transition={Bounce}
+                />
+            </UserProvider>
+        </>
+    );
+};
 
-    const App: React.FC = () => {
-        // const AppStyle: React.CSSProperties = {
-        //     background: 'linear-gradient(to top, #333333, #d3d3d3)',
-        //     minHeight: '100vh',
-        // };
-        return (
-            <>
-                <UserProvider>
-                    <Outlet />
-                    <ToastContainer />
-                </UserProvider>
-            </>
-        );
-    };
-
-
-    export default App;
-
+export default App;

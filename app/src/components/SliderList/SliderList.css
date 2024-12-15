@@ -1,20 +1,20 @@
 ﻿.sliderlist-container {
-    width: 100%; /* Займає всю ширину батьківського контейнера */
-    max-width: none; /* Забирає максимальну ширину, якщо вона була задана */
-    padding: 0; /* Прибирає padding, щоб слайдери займали всю ширину */
-    box-sizing: border-box; /* Включає padding та border в ширину */
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    /*box-sizing: border-box;*/
 }
 
 .row {
-    width: 100%; /* Займає всю ширину контейнера */
-    margin: 0; /* Прибирає зовнішні відступи */
+    width: 100%;
+    margin: 0;
 }
 
 .col-12, .col-md-10 {
-    padding: 0; /* Прибирає padding колонок */
-    width: 100%; /* Колонки займають всю ширину батьківського контейнера */
+    padding: 0;
+    width: 100%;
 }
 
 .mb-3, .mt-2 {
-    margin: 0; /* Прибирає вертикальні відступи */
+    margin: 0;
 }

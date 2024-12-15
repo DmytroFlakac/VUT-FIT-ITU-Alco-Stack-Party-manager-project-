@@ -9,17 +9,8 @@
     font-family: 'Halant', serif;
 }
 
-.container .menu-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    width:100%;
-    height: 100%;
-    transition: transform 0.3s ease-in-out;
-}
+
+
 
 /* Desktop and tablet styling */
 @media (min-width: 768px) {
@@ -38,5 +29,7 @@
     .menu-button {
         /* Remove opacity on mobile devices */
         opacity: 1;
+        /*font-size: 14px;*/
     }
 }
+

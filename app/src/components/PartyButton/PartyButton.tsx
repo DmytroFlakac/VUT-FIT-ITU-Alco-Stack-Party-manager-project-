@@ -2,8 +2,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { faUsers, faCake } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import partybutton from "../../assets/partybutton.svg"
+import joinParty from "../../assets/join_party.svg";
+import createParty from "../../assets/creat_party.svg";
 
 interface PartyButtonProps {
     partyId: string;
@@ -13,8 +15,29 @@ interface PartyButtonProps {
     createdByMe: boolean;
 }
 
-const PartyButton: React.FC<PartyButtonProps> = ({ partyId, name, description, date, createdByMe }) => {
-    const ButtonStyle = { backgroundColor: createdByMe ? 'rgba(255, 49, 49, 0.6)' : 'rgba(33, 85, 255, 0.6)' };
+const PartyButton: React.FC<PartyButtonProps> = ({ partyId, name, date, createdByMe }) => {
+    const ButtonStyle = {
+
+        backgroundImage: `url(${partybutton})`  ,
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        border: 'transparent',
+        width: '600px',
+        // border: '3px solid #50C5FF',
+        // borderTopLeftRadius: '10px',
+        // borderTopRightRadius: '10px',
+        // borderBottomRightRadius: '10px',
+        // borderBottomLeftRadius: '10px',
+        // // width: '650px',
+        paddingRight: '20px',
+        paddingLeft: '20px',
+        paddingTop: '12px',
+        paddingBottom: '12px',
+        marginLeft: '-50px',
+        marginTop: '5px',
+
+    };
 
     // Using useNavigate to programmatically navigate
     const navigate = useNavigate();
@@ -39,24 +62,11 @@ const PartyButton: React.FC<PartyButtonProps> = ({ partyId, name, description, d
         minute: '2-digit'
     }).format(new Date(date));
 
-    // const titleStyle = {
-    //     fontFamily: 'Halant Semi Bold',
-    //     fontWeight: 600,
-    // };
-    //
-    // const descriptionStyle = {
-    //     fontFamily: 'Halant Regular',
-    //     fontWeight: 400,
-    // };
-    //
-    // const dateStyle = {
-    //     fontFamily: 'Halant Semi Bold',
-    //     fontWeight: 600,
-    // };
+
 
     return (
         <button
-            className="btn party-button m-1"
+            className="btn party-button "
             style={ButtonStyle}
             onClick={handleButtonClick}  // Add click handler for navigation
         >
@@ -64,14 +74,15 @@ const PartyButton: React.FC<PartyButtonProps> = ({ partyId, name, description, d
                 <div className="d-flex align-items-center">
                     <div className="me-3">
                         {createdByMe ? (
-                            <FontAwesomeIcon icon={faUsers} size="2x"/>
+                            <img src={createParty} alt="Create Party" style={{width: '32px', height: '32px'}}/>
                         ) : (
-                            <FontAwesomeIcon icon={faCake} size="2x"/>
+                            <img src={joinParty} alt="Join Party" style={{width: '32px', height: '32px'}}/>
                         )}
                     </div>
+
                     <div className="d-flex flex-column">
                         <h5 className="mb-0 text-start">{name}</h5>
-                        <p className="mb-0 text-start">{description}</p>
+                        {/*<p className="mb-0 text-start">{description}</p>*/}
                     </div>
                 </div>
                 <div className="text-end">

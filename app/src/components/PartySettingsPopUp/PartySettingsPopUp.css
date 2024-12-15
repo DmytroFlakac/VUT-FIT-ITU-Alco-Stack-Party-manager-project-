@@ -1,0 +1,165 @@
+@font-face {
+    font-family: 'Karla-Bold';
+    src: url('../../assets/fonts/Karla/static/Karla-Bold.ttf') format('truetype');
+}
+
+.party-edit-backdrop-blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.party-settings-container {
+    width: 100%;
+    max-width: 450px;
+    max-height: 600px; /* Limit popup height */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column; /* Stack header, button, and body */
+    overflow: hidden; /* Hide anything overflowing the container */
+
+}
+
+.party-header {
+    font-family: 'Karla-Bold', sans-serif;
+    font-size: 40px;
+    color: #263238;
+    text-align: center;
+    white-space: nowrap;
+    margin : 0px auto;
+    height: 150px;
+}
+
+.party-footer {
+    background-color: black;
+    border: 1px solid #50C5FF;
+    border-radius: 20px;
+    width: 200px;
+    padding: 10px;
+    color: white;
+    font-family: 'Karla-Bold', sans-serif;
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+    display: block;
+}
+.party-body {
+    overflow-y: auto; /* Enable scrolling */
+    flex: 1; /* Take available space */
+    padding: 30px;
+}
+
+/* Hide scrollbar for Webkit browsers (e.g., Chrome, Safari) */
+.party-body::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.party-body {
+    scrollbar-width: none; /* Removes scrollbar in Firefox */
+    -ms-overflow-style: none; /* Hides scrollbar in Internet Explorer */
+}
+
+.toggle-container {
+    display: flex;
+    align-items: center; /* Vertically align label and toggle */
+    justify-content: flex-start; /* Align both label and toggle to the left */
+    gap: 10px; /* Add minimal spacing between label and toggle */
+    margin-bottom: 10px; /* Add spacing between rows */
+}
+
+.toggle-container .toggle-component {
+    flex-shrink: 0; /* Prevent toggle from shrinking */
+    margin-left: 10px; /* Add spacing between label and toggle */
+}
+
+
+.form-label {
+    font-family: 'Karla Bold', sans-serif; /* Use Karla Bold font */
+    font-size: 16px;
+    color: #263238; /* Set text color */
+    text-align: left; /* Align text to the left */
+    display: block; /* Ensure proper spacing for the label */
+    margin-bottom: 4px; /* Add spacing between label and input */
+}
+
+.custom-input {
+    font-family: 'Karla-Regular', sans-serif;
+    width: 100%; /* Full width */
+    border-radius: 20px; /* Rounded corners */
+    border: 1px solid #90A4AE;
+    padding: 10px; /* Padding for input content */
+    font-size: 16px; /* Increase font size for better readability */
+    outline: none; /* Remove default focus outline */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.custom-input:focus {
+    border-color: #50C5FF; /* Highlight border color on focus */
+    box-shadow: 0 0 5px rgba(80, 197, 255, 0.5); /* Optional focus shadow */
+}
+
+
+.datepicker-container {
+    width: 100%; /* Full width */
+
+}
+
+.form-label {
+    font-family: 'Karla-Bold', sans-serif;
+    font-size: 16px;
+    color: #263238;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.datepicker-input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid #dcdcdc;
+    border-radius: 20px;
+    padding: 10px 15px;
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+.datepicker-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-family: 'Karla-Regular', sans-serif;
+    color: #263238;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+.datepicker-icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.clear-icon {
+    width: 15px; /* Adjust to fit the design */
+    height: 15px;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    top: 0px;
+    left: -175px;
+}
+
+.clear-icon:hover {
+    filter: brightness(0.8); /* Darken the icon on hover */
+}

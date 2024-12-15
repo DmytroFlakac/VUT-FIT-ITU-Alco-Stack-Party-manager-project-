@@ -1,0 +1,128 @@
+@font-face {
+    font-family: 'Karla-Bold';
+    src: url('../../assets/fonts/Karla/static/Karla-Bold.ttf') format('truetype');
+}
+
+.datepicker-container {
+    margin: 0 auto;
+    max-width: 480px;
+}
+
+
+.datepicker-label {
+    font-family: 'Karla-Bold', sans-serif;
+    font-size: 16px;
+    color: #263238;
+    margin-bottom: 4px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.datepicker-custom-input-wrapper {
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    border: 1px solid #90A4AE;
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: white;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.datepicker-custom-input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 16px;
+    font-family: 'Karla-Regular', sans-serif;
+    color: #263238;
+    padding-right: 40px;
+}
+
+.datepicker-custom-input::placeholder {
+    color: #90A4AE;
+
+}
+
+.datepicker-icon {
+    position: absolute;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.react-datepicker {
+    position: relative;
+    background-color: white;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.react-datepicker__header {
+    border-radius: 12px 12px 0 0;
+    background-color: white;
+    border-bottom: 1px solid #828282;
+}
+
+.react-datepicker__current-month {
+    font-family: 'Karla-Bold', sans-serif;
+    color: #828282;
+    font-size: 16px;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.react-datepicker__day-names {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day {
+    font-family: 'Karla-Regular', sans-serif;
+    color: #000000;
+}
+
+.react-datepicker__navigation--previous,
+.react-datepicker__navigation--next {
+    border-color: black;
+}
+
+.react-datepicker__day:hover,
+.react-datepicker__day--selected {
+    background-color: #1294F2;
+    border-radius: 50%;
+    color: white;
+}
+
+/* Time Selector Styles */
+.react-datepicker__time-container {
+    border-left: 1px solid #828282;
+    font-family: 'Karla-Regular', sans-serif;
+}
+
+.react-datepicker__time-list {
+    background: white;
+    border-radius: 0 12px 12px 0;
+}
+
+.react-datepicker__time-list-item {
+    padding: 8px;
+    text-align: center;
+    color: #000000;
+}
+
+.react-datepicker__time-list-item:hover {
+    background-color: #1294F2;
+    color: white;
+}
+
+.react-datepicker__time-list-item--selected {
+    background-color: #1294F2;
+    color: white;
+}

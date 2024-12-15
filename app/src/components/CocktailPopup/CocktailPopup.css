@@ -1,0 +1,120 @@
+﻿@font-face {
+    font-family: 'Karla-Bold';
+    src: url('../../assets/fonts/Karla/static/Karla-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Halant';
+    src: url('../../assets/fonts/halant/Halant-SemiBold.ttf') format('truetype');
+}
+
+.cocktail-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /*background-color: rgba(0, 0, 0, 0.5);*/
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.cocktail-popup {
+    width: 460px;
+    background-color: rgba(255,255,255, 0.1);
+
+}
+
+.cocktail-popup-title {
+    font-family: 'Karla-Bold', sans-serif;
+    font-size: 40px;
+    color: #263238;
+    margin-bottom: 16px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.cocktail-list-scroll {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    height: 280px;
+}
+
+.close-popup-button {
+    display: block;
+    margin: 0 auto;
+}
+
+.cocktail-details-container {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.cocktail-details-container .left-section {
+    flex: 1;
+    font-family: 'Halant', serif;
+}
+
+.cocktail-details-container .left-section h4 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.cocktail-details-container .left-section img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.cocktail-details-container .left-section p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.cocktail-details-container .right-section {
+    flex: 1;
+    font-family: 'Halant', serif;
+}
+
+.cocktail-details-container .right-section h4 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.cocktail-details-container .right-section ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.cocktail-details-container .right-section li {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+
+.cocktail-confirm {
+    background-color: black;
+    border: 1px solid #50C5FF;
+    border-radius: 20px;
+    width: 200px;
+    padding: 10px;
+    color: white;
+    font-family: 'Karla-Bold', sans-serif;
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 20px auto;
+}
+

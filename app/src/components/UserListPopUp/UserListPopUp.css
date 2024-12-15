@@ -1,0 +1,99 @@
+@font-face {
+    font-family: 'Karla-Bold';
+    src: url('../../assets/fonts/Karla/static/Karla-Bold.ttf') format('truetype');
+}
+
+.userlist-backdrop-blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userlist-settings-container {
+    width: 100%;
+    max-width: 450px;
+    max-height: 600px; /* Limit popup height */
+
+    display: flex;
+    flex-direction: column; /* Stack header, body, and footer */
+    overflow: hidden; /* Hide anything overflowing the container */
+    /*background-color: transparent;*/
+    background-image: url("../../assets/createpopup.svg");
+    background-size: auto;
+    border: 3px solid rgba(79, 40, 233, 0.5); /* First semi-transparent blue border */
+    border-radius: 10px; /* Rounded corners */
+    /*     box-shadow:
+                 -29px 6px 45px rgba(255, 249, 249, 0.25), !* White-ish drop shadow *!
+                 0 0 15px rgba(79, 40, 233, 0.5); !* Purple glow effect around the border *!*/
+    backdrop-filter: blur(10px); /* Optional: Adds a frosted-glass blur effect */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(255,255,255, 0.1);
+}
+
+.userlist-header {
+    font-family: 'Karla-Bold', sans-serif;
+    font-size: 40px;
+    color: #263238;
+    text-align: center;
+    white-space: nowrap;
+    margin: 0px auto;
+    height: 80px;
+    position: relative; /* For positioning elements inside */
+}
+
+.userlist-body {
+    overflow-y: auto; /* Enable scrolling */
+    flex: 1; /* Take available space */
+    padding: 10px;
+    font-family: 'Karla-Regular', sans-serif; /* Assuming you have this font */
+    color: #333;
+}
+
+/* Hide scrollbar for Webkit browsers (e.g., Chrome, Safari) */
+.body::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.userlist-body {
+    scrollbar-width: none; /* Removes scrollbar in Firefox */
+    -ms-overflow-style: none; /* Hides scrollbar in Internet Explorer */
+}
+
+.userlist-footer {
+    background-color: black;
+    border: 1px solid #50C5FF;
+    border-radius: 20px;
+    width: 200px;
+    padding: 10px;
+    color: white;
+    font-family: 'Karla-Bold', sans-serif;
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 20px auto 10px auto; /* Center the button and add top margin */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.userlist-footer:hover {
+    background-color: black; /* Darken on hover */
+}
+
+/* Optional: Add animations for the popup appearance */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.userlist-settings-container {
+    animation: fadeIn 0.3s ease-out;
+}

@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'Halant';
+    src: url('../../assets/fonts/halant/Halant-SemiBold.ttf') format('truetype');
+}
+
+.cocktail-card {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 255);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.cocktail-card:hover {
+    transform: scale(1.02);
+}
+
+.cocktail-card-photo {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.cocktail-card-title {
+    font-family: 'Halant', sans-serif;
+    flex: 1;
+    font-size: 1rem;
+    font-weight: bold;
+    color: black;
+}
+
+.cocktail-card-button {
+    background: transparent;
+    border: none;
+    font-size: 0.9rem;
+    color: black;
+    cursor: pointer;
+    font-family: 'Halant', serif;
+    font-weight: 600;
+}
+.cocktail-ingr {
+    font-family: 'Halant', sans-serif;
+
+    font-size: 1rem;
+    font-weight: bold;
+    color: black;
+}

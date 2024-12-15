@@ -1,37 +1,146 @@
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+
+
+.full-height-login {
+    min-height: 100vh;
 }
 
-@keyframes shake {
-    0%, 100% {
-        transform: translateX(0);
-    }
-    25% {
-        transform: translateX(-10px);
-    }
-    50% {
-        transform: translateX(10px);
-    }
-    75% {
-        transform: translateX(-10px);
-    }
+.container-fluid-login {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    min-height: 100vh;
+    background-position: center bottom;
 }
 
-.square-container {
+@font-face {
+    font-family: 'Karla-Bold';
+    src: url('../../assets/fonts/Karla/static/Karla-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Karla-Regular';
+    src: url('../../assets/fonts/Karla/static/Karla-Regular.ttf') format('truetype');
+}
+
+h1.card-title-login {
+    font-family: 'Karla-Bold', sans-serif;
+    font-size: 32px;
+    color: #263238;
+    margin-bottom: 16px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.UsernamePassword-login {
+    font-family: 'Karla-Bold', sans-serif;
+    font-size: 16px;
+    color: #263238;
+    margin-bottom: 4px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+
+
+.party-icon-login {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: -2px;
+    left: 5px;
+    z-index: 1000;
+}
+
+.sign-in-card {
+    background-image: url('../../assets/signIn_card.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    max-width: 600px;
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    box-sizing: border-box;
+
+    position: relative;
+    top: -20px;
+}
+
+.square-container-login {
     position: relative;
     width: 100%;
-    height: auto;
-    max-width: 800px;
-    max-height: 900px;
+    height: 80%;
+    max-width: 1000px;
+    /*max-height: 1;*/
     margin: 0 auto;
-    background-color: white;
     border-radius: 10px;
-    box-shadow: 0 8px 30px rgba(255, 255, 255, 1), /* Основная большая тень */
-    0 5px 15px rgba(255, 255, 255, 1); /* Дополнительная мягкая тень */
     z-index: 1;
+}
+
+
+.custom-input-login {
+    border-radius: 20px !important;
+    border: 1px solid #90A4AE;
+    padding: 10px 15px;
+    font-size: 16px;
+    box-sizing: border-box;
+    width: 500px;
+}
+
+.custom-input-login:focus {
+    border-color: #90A4AE;
+    outline: none;
+}
+
+.custom-input-login::placeholder {
+    color: #90A4AE;
+    font-family: 'Karla-Regular', sans-serif;
+}
+
+.is-invalid-login {
+    border-color: #ff6c6c;
+}
+
+.invalid-feedback-login {
+    color: #ff6c6c;
+    font-size: 14px;
+}
+
+.forgot-link-login {
+    font-family: 'Karla-Bold', sans-serif;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+}
+
+.confirm-button-login {
+    background-color: black;
+    border: 1px solid #50C5FF;
+    border-radius: 20px;
+    width: 470px;
+    padding: 10px;
+    color: white;
+    font-family: 'Karla-Bold', sans-serif;
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 0 auto;
+}
+
+.confirm-button-login:hover {
+    background-color: #333;
+}
+
+.text-dont-login {
+    font-family: 'Karla-Bold', sans-serif;
+    color: #263238;
+}
+
+.text-signup-login {
+    font-family: 'Karla-Bold', sans-serif;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }

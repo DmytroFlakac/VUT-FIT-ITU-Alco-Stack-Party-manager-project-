@@ -1,0 +1,83 @@
+.liquor-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 200px;
+    max-height: 150px; /* Set the height to 150px */
+    overflow-y: auto; /* Enable vertical scrolling */
+    scroll-behavior: smooth; /* Enable smooth scrolling */
+    scrollbar-width: none; /* Hide scrollbar */
+    -ms-overflow-style: none; /* Hide scrollbar */
+    /*border: 3px solid #50C5FF;*/
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
+    cursor: pointer;
+}
+
+.liquor-card:hover {
+    transform: scale(1.0);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.liquor-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 8px;
+}
+
+.liquor-card-preferences {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /*margin-top: 16px;*/
+    width: 100%;
+}
+
+.liquor-preference {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    /*padding: 4px 8px;*/
+}
+
+.liquor-preference-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.liquor-preference-label {
+    flex-grow: 1;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #484545;
+}
+
+.liquor-preference-value {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #000;
+}
+.liquor-card-image-top {
+    width: 30px;
+    height: 30px;
+    /*margin-top: 8px; !* Add space from the top edge *!*/
+}
+
+.liquor-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: -10px; /* Space between image and text */
+}
+
+.liquor-card-text {
+    font-size: 1rem;
+    font-family: 'HalantB', serif;
+    color: #484545;
+    font-weight: bold;
+    text-align: center;
+}

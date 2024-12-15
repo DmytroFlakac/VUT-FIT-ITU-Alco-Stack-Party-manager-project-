@@ -1,0 +1,76 @@
+@font-face {
+    font-family: 'Karla-Bold';
+    src: url('../../assets/fonts/Karla/static/Karla-Bold.ttf') format('truetype');
+}
+
+.select-backdrop-blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /*background-color: rgba(0, 0, 0, 0.5); !* Полупрозрачный черный фон *!*/
+    backdrop-filter: blur(8px); /* Размытие фона */
+    z-index: 1000; /* Поверхность для отображения */
+}
+
+.select-alco-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    /*max-width: 600px;*/
+    background-size: cover;
+    border-radius: 15px;
+    padding: 20px;
+    border: 3px solid rgba(41, 141, 255, 0.5); /* First semi-transparent blue border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow:
+            -29px 6px 45px rgba(255, 249, 249, 0.25), /* White-ish drop shadow */
+            0 0 15px rgba(79, 40, 233, 0.5); /* Purple glow effect around the border */
+    backdrop-filter: blur(20px); /* Optional: Adds a frosted-glass blur effect */
+    z-index: 2000;
+    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+}
+
+.select-alco-modal-content {
+    /*max-width: 550px;*/
+    text-align: center;
+    font-family: 'Karla-Bold', sans-serif;
+    color: #263238;
+}
+
+.select-confirm {
+    background-color: black; /* Черный цвет фона */
+    border: 1px solid #50C5FF; /* Обводка 1 пиксель цвета 50C5FF */
+    border-radius: 20px; /* Закругленные углы */
+    width: 200px; /* Уменьшенная ширина */
+    padding: 10px; /* Отступы внутри кнопки для удобства */
+    color: white; /* Цвет текста белый */
+    font-family: 'Karla-Bold', sans-serif; /* Устанавливаем шрифт Karla-Bold */
+    font-size: 20px; /* Размер текста */
+    /*transition: background-color 0.3s ease; !* Плавный переход для цвета фона *!*/
+    display: block; /* Делаем кнопку блочным элементом */
+    margin: 20px auto; /* Центрируем кнопку */
+}
+
+.alcohol-slider-list {
+    max-height: 150px; /* Максимальная высота списка */
+    overflow-y: auto; /* Вертикальная прокрутка */
+    /*padding-right: 10px; !* Отступ для прокрутки *!*/
+    scrollbar-width: none; /* Тонкий скроллбар (для Firefox) */
+}
+
+.alcohol-slider-list::-webkit-scrollbar {
+    width: 8px; /* Ширина скроллбара */
+}
+
+.alcohol-slider-list::-webkit-scrollbar-thumb {
+    background-color: #50C5FF; /* Цвет ползунка */
+    border-radius: 5px; /* Закругленные углы ползунка */
+}
+
+.alcohol-slider-list::-webkit-scrollbar-thumb:hover {
+    background-color: #007ACC; /* Цвет ползунка при наведении */
+}

@@ -1,0 +1,92 @@
+@font-face {
+    font-family: "ShareTech";
+    src: url("../../assets/fonts/Share_Tech/ShareTech-Regular.ttf") format("opentype");
+}
+
+.timer-container {
+    position: absolute;
+    top: 80px;
+    left: 80px;
+    width: 400px;
+    height: 150px;
+    margin: 50px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timer-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.timer-content {
+    position: absolute;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    height: 100%;
+    z-index: 2;
+}
+
+.timer-segment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 100%;
+    text-align: center;
+}
+
+.timer-number {
+    font-family: "ShareTech", sans-serif;
+    font-size: 2.5rem;
+    color: white;
+    line-height: 1;
+    margin: 0;
+}
+
+.timer-number-1 {
+    position: absolute;
+    top: 25px;
+    left: 12%;
+    transform: translateX(-50%);
+    font-family: "ShareTech", sans-serif;
+    font-size: 4rem;
+    color: #F2F2F2;
+}
+
+.timer-number-2 {
+    position: absolute;
+    top: 25px;
+    left: 41%;
+    transform: translateX(-50%);
+    font-family: "ShareTech", sans-serif;
+    font-size: 4rem;
+    color: #F2F2F2;
+}
+
+.timer-number-3 {
+    position: absolute;
+    top: 25px;
+    left: 69%;
+    transform: translateX(-50%);
+    font-family: "ShareTech", sans-serif;
+    font-size: 4rem;
+    color: #F2F2F2;
+}
+
+.timer-number-4 {
+    position: absolute;
+    top: 25px;
+    left: 97%;
+    transform: translateX(-50%);
+    font-family: "ShareTech", sans-serif;
+    font-size: 4rem;
+    color: #F2F2F2;
+}
